@@ -8,5 +8,8 @@ import {AppRegistry} from 'react-native';
 
 // AppRegistry.registerComponent(appName, () => App);
 
-import HelloWorld from './components/HelloWorld';
-AppRegistry.registerComponent('Tutorial', () => HelloWorld);
+// import HelloWorld from './components/HelloWorld';
+// AppRegistry.registerComponent('Tutorial', () => HelloWorld);
+
+import StyleSheetCustom from './components/StyleSheetCustom';
+AppRegistry.registerComponent('Tutorial', () => StyleSheetCustom);
