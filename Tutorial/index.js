@@ -23,5 +23,5 @@ import {AppRegistry} from 'react-native';
 // import TouchesCutom from './components/13_Touches_01';
 // AppRegistry.registerComponent('Tutorial', () => TouchesCutom);
 
-import VerticalScrollView from './components/14_VerticalScrollView';
-AppRegistry.registerComponent('Tutorial', () => VerticalScrollView);
+import HorizontalScrollView from './components/15_HorizontalScroll';
+AppRegistry.registerComponent('Tutorial', () => HorizontalScrollView);
