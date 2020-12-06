@@ -17,5 +17,11 @@ import {AppRegistry} from 'react-native';
 // import Login from './components/10_TextInput_01';
 // AppRegistry.registerComponent('Tutorial', () => Login);
 
-import TouchesAndGestures from './components/12_Touches_and_Gestures_01';
-AppRegistry.registerComponent('Tutorial', () => TouchesAndGestures);
+// import TouchesAndGestures from './components/12_Touches_and_Gestures_01';
+// AppRegistry.registerComponent('Tutorial', () => TouchesAndGestures);
+
+// import TouchesCutom from './components/13_Touches_01';
+// AppRegistry.registerComponent('Tutorial', () => TouchesCutom);
+
+import VerticalScrollView from './components/14_VerticalScrollView';
+AppRegistry.registerComponent('Tutorial', () => VerticalScrollView);
