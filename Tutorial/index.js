@@ -14,5 +14,8 @@ import {AppRegistry} from 'react-native';
 // import StyleSheetCustom from './components/StyleSheetCustom';
 // AppRegistry.registerComponent('Tutorial', () => StyleSheetCustom);
 
-import Login from './components/10_TextInput_01';
-AppRegistry.registerComponent('Tutorial', () => Login);
+// import Login from './components/10_TextInput_01';
+// AppRegistry.registerComponent('Tutorial', () => Login);
+
+import TouchesAndGestures from './components/12_Touches_and_Gestures_01';
+AppRegistry.registerComponent('Tutorial', () => TouchesAndGestures);
