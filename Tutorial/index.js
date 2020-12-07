@@ -26,6 +26,17 @@ import {AppRegistry} from 'react-native';
 // import HorizontalScrollView from './components/15_HorizontalScroll';
 // AppRegistry.registerComponent('Tutorial', () => HorizontalScrollView);
 
-import BasicFlatList from './components/17_FlatList_01';
-AppRegistry.registerComponent('Tutorial', () => BasicFlatList);
+// import BasicFlatList from './components/17_FlatList_01';
+// AppRegistry.registerComponent('Tutorial', () => BasicFlatList);
 
+// import HelloWorld from './the_basics_063/01_hello_word';
+// AppRegistry.registerComponent('Tutorial', () => HelloWorld);
+
+// import HandleTextInput from './the_basics_063/02_Handle_Text_Input';
+// AppRegistry.registerComponent('Tutorial', () => HandleTextInput);
+
+// import ScrollViewCustom from './the_basics_063/03_Using_a_Scrollview';
+// AppRegistry.registerComponent('Tutorial', () => ScrollViewCustom);
+
+import FlatListBasics from './the_basics_063/04_Using_ListView';
+AppRegistry.registerComponent('Tutorial', () => FlatListBasics);
