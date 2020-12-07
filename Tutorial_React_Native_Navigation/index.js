@@ -30,39 +30,71 @@
 const {Navigation} = require('react-native-navigation');
 import HomeScreen from './components/02_Advanced_navigation';
 import SettingsScreen from './components/02_Advanced_navigation';
+import {View, Button} from 'react-native';
+import React from 'react';
+
+const LoginScreen = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'whitesmoke',
+      }}>
+      <Button
+        title="Login"
+        color="#710ce3"
+        onPress={() => Navigation.setRoot(mainRoot)}
+      />
+    </View>
+  );
+};
+
+Navigation.registerComponent('Login', () => LoginScreen);
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  Navigation.setRoot({
-    root: {
-      bottomTabs: {
-        children: [
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    name: 'Home',
-                  },
-                },
-              ],
-            },
-          },
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    name: 'Settings',
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  });
+  Navigation.setRoot(loginRoot);
 });
+
+const mainRoot = {
+  root: {
+    bottomTabs: {
+      children: [
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Home',
+                },
+              },
+            ],
+          },
+        },
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Settings',
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+};
+
+const loginRoot = {
+  root: {
+    component: {
+      name: 'Login',
+    },
+  },
+};
 
 Navigation.setDefaultOptions({
   statusBar: {
@@ -106,3 +138,4 @@ SettingsScreen.options = {
     text: 'Settings',
   },
 };
+//==================
