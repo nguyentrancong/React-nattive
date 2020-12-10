@@ -10,6 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@unimodules/core": "^6.0.0",
+    "@unimodules/react-native-adapter": "^5.7.0",
+    "expo-constants": "^9.3.4",
     "react": "16.13.1",
     "react-native": "0.63.4"
   },
