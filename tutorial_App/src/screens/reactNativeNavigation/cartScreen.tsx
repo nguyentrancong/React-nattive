@@ -30,11 +30,14 @@ CartScreen.options = {
     topBar: {
       title: {
         text: 'Cart',
-        color: 'white'
+        // color: 'white'
       },
-      background: {
-        color: '#4d089a'
-      }
+    //   background: {
+    //     color: '#4d089a'
+    //   }
+    },
+    bottomTab: {
+        text: 'Cart',
     }
   };
 

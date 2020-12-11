@@ -27,11 +27,14 @@ AccountScreen.options = {
     topBar: {
         title: {
             text: 'Account',
-            color: 'white',
+            // color: 'white',
         },
-        background: {
-            color: '#4d089a'
-        }
+        // background: {
+        //     color: '#4d089a'
+        // }
+    },
+    bottomTab: {
+        text: 'Account',
     }
 }
 

@@ -27,11 +27,14 @@ CategoryScreen.options = {
     topBar: {
         title: {
             text: 'Category',
-            color: 'white',
+            // color: 'white',
         },
-        background: {
-            color: '#4d089a'
-        }
+        // background: {
+        //     color: '#4d089a'
+        // }
+    },
+    bottomTab: {
+        text: 'Category',
     }
 }
 

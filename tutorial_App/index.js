@@ -41,20 +41,75 @@ import CartScreen from './src/screens/reactNativeNavigation/cartScreen';
 import AccountScreen from './src/screens/reactNativeNavigation/accountScreen';
 import CategoryScreen from './src/screens/reactNativeNavigation/categoryScreen';
 
-Navigation.events().registerAppLaunchedListener(async () => {
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              name: 'Home'
-            }
-          }
-        ]
-      }
+const LoginScreen = () => {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Button
+        title='Login'
+        color='#710ce3'
+        onPress={() => Navigation.setRoot(mainRoot)}
+      />
+    </View>
+  );
+};
+
+Navigation.registerComponent('Login', () => LoginScreen);
+
+const loginRoot = {
+  root: {
+    component: {
+      name: 'Login'
     }
-  });
+  }
+};
+
+const mainRoot = {
+  root: {
+    bottomTabs: {
+      children: [
+        {
+          stack: {
+            children: [{
+              component: {
+                name: 'Home'
+              }
+            }]
+          }
+      },
+      {
+        stack: {
+          children: [{
+            component: {
+              name: 'Category'
+            }
+          }]
+        }
+      },
+      {
+        stack: {
+          children: [{
+            component: {
+              name: 'Cart'
+            }
+          }]
+        }
+      },
+      {
+        stack: {
+          children: [{
+            component: {
+              name: 'Account'
+            }
+          }]
+        }
+      },
+    ]
+    }
+  }
+};
+
+Navigation.events().registerAppLaunchedListener(async () => {
+  Navigation.setRoot(loginRoot);
 });
 
 // set all navigation this the same
@@ -72,5 +127,9 @@ Navigation.setDefaultOptions({
     background: {
       color: '#4d089a'
     }
+  },
+  bottomTab: {
+    fontSize: 14,
+    selectedFontSize: 14
   }
 });

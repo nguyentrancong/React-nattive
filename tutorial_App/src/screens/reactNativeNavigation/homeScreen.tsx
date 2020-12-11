@@ -18,14 +18,7 @@ const HomeScreen = (props) => {
         color='#710ce3'
         onPress={() => Navigation.push(props.componentId, {
           component: {
-            name: 'Account',
-            // options: {
-            //   topBar: {
-            //     title: {
-            //       text: 'Settings'
-            //     }
-            //   }
-            // }
+            name: 'Settings',
           }
         })}/>
     </View>
@@ -45,11 +38,14 @@ HomeScreen.options = {
   topBar: {
     title: {
       text: 'Home',
-      color: 'white'
+      // color: 'white'
     },
-    background: {
-      color: '#4d089a'
-    }
+    // background: {
+    //   color: '#4d089a'
+    // }
+  },
+  bottomTab: {
+    text: 'Home'
   }
 };
 
