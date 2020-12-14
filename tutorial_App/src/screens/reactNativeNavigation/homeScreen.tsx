@@ -8,6 +8,7 @@ import {
     ScrollView,
     Animated,
     Platform,
+    SafeAreaView,
 
 } from 'react-native';
 
@@ -16,34 +17,102 @@ const Header_Maximum_Height = 200;
 const Header_Minimum_Height = 50;
 
 // Home screen declaration
-const HomeScreen = (props) => {
+const HomeScreen = () => {
+  const dummyData = [
+    'Text',
+    'Input',
+    'Button',
+    'Card',
+    'CheckBox',
+    'Divider',
+    'Header',
+    'List Item',
+    'Pricing',
+    'Rating',
+    'Search Bar',
+    'Slider',
+    'Tile',
+    'Icon',
+    'Avatar',
+  ];
+  let AnimatedHeaderValue = new Animated.Value(0);
+  const Header_Maximum_Height = 150;
+  //Max Height of the Header
+  const Header_Minimum_Height = 50;
+  //Min Height of the Header
+
+  const animateHeaderBackgroundColor =
+    AnimatedHeaderValue.interpolate({
+      inputRange: [0, Header_Maximum_Height - Header_Minimum_Height],
+      outputRange: ['#4286F4', '#00BCD4'],
+      extrapolate: 'clamp',
+    });
+
+  const animateHeaderHeight =
+    AnimatedHeaderValue.interpolate({
+      inputRange: [0, Header_Maximum_Height - Header_Minimum_Height],
+      outputRange: [Header_Maximum_Height, Header_Minimum_Height],
+      extrapolate: 'clamp',
+    });
+
   return (
-    <View style={styles.root}>
-      <Text>Hello React Native Navigation 👋</Text>
-      <Button
-        title='Push Settings Screen'
-        color='#710ce3'
-        onPress={() => Navigation.push(props.componentId, {
-          component: {
-            name: 'Settings',
-            passProps: {
-              name: 'John Doe',
-              status: 'online'
-            }
-          }
-          
-        })}/>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Animated.View
+          style={[
+            styles.header,
+            {
+              height: animateHeaderHeight,
+              backgroundColor: animateHeaderBackgroundColor,
+            },
+          ]}>
+          <Text style={styles.headerText}>
+            React Native Collapsible Toolbar with Animation
+          </Text>
+        </Animated.View>
+        <ScrollView
+          scrollEventThrottle={16}
+          onScroll={Animated.event(
+            [{
+              nativeEvent: {
+                contentOffset: { y: AnimatedHeaderValue }
+              }
+            }],
+            { useNativeDriver: false }
+          )}>
+          {/* Put all your Component here inside the ScrollView */}
+          {dummyData.map((item, index) => (
+            <Text style={styles.textStyle} key={index}>
+              {item}
+            </Text>
+          ))}
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
     flex: 1,
-    alignItems: 'center',
+  },
+  header: {
     justifyContent: 'center',
-    backgroundColor: 'whitesmoke'
-  }
+    alignItems: 'center',
+    left: 0,
+    right: 0,
+  },
+  headerText: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  textStyle: {
+    textAlign: 'center',
+    color: '#000',
+    fontSize: 18,
+    padding: 20,
+  },
 });
 
 HomeScreen.options = {
