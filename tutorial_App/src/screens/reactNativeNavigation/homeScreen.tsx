@@ -4,9 +4,16 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
+    ScrollView,
+    Animated,
+    Platform,
 
 } from 'react-native';
+
+const Header_Maximum_Height = 200;
+ 
+const Header_Minimum_Height = 50;
 
 // Home screen declaration
 const HomeScreen = (props) => {
@@ -19,7 +26,12 @@ const HomeScreen = (props) => {
         onPress={() => Navigation.push(props.componentId, {
           component: {
             name: 'Settings',
+            passProps: {
+              name: 'John Doe',
+              status: 'online'
+            }
           }
+          
         })}/>
     </View>
   );

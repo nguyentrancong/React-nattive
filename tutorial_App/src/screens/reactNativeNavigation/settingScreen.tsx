@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 
 // Settings screen declaration - this is the screen we'll be pushing into the stack
-const SettingsScreen = () => {
+const SettingsScreen = ({ name, status }) => {
     return (
       <View style={styles.root}>
         <Text>Settings Screen</Text>
+        <Text>name: {name}</Text>
+        <Text>Status: {status}</Text>
       </View>
     );
 }

@@ -30,9 +30,9 @@
 
 // react-native-navigation
 
-const { Navigation } = require('react-native-navigation');
+const {Navigation} = require('react-native-navigation');
 const React = require('react');
-const { View, Text, Button, StyleSheet } = require('react-native');
+const {View, Text, Button, StyleSheet} = require('react-native');
 
 // need to import view in here
 import HomeScreen from './src/screens/reactNativeNavigation/homeScreen';
@@ -40,15 +40,22 @@ import SettingsScreen from './src/screens/reactNativeNavigation/settingScreen';
 import CartScreen from './src/screens/reactNativeNavigation/cartScreen';
 import AccountScreen from './src/screens/reactNativeNavigation/accountScreen';
 import CategoryScreen from './src/screens/reactNativeNavigation/categoryScreen';
+import LoginContent from './src/screens/reactNativeNavigation/login/loginContent';
 
 const LoginScreen = () => {
+  
+  const loginHandle = () => {
+    Navigation.setRoot(mainRoot);
+  };
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Button
+    <View style={{flex: 1}}>
+      {/* <Button
         title='Login'
         color='#710ce3'
         onPress={() => Navigation.setRoot(mainRoot)}
-      />
+      /> */}
+      <LoginContent loginHandle={() => Navigation.setRoot(mainRoot)} />
     </View>
   );
 };
@@ -58,9 +65,9 @@ Navigation.registerComponent('Login', () => LoginScreen);
 const loginRoot = {
   root: {
     component: {
-      name: 'Login'
-    }
-  }
+      name: 'Login',
+    },
+  },
 };
 
 const mainRoot = {
@@ -69,43 +76,51 @@ const mainRoot = {
       children: [
         {
           stack: {
-            children: [{
-              component: {
-                name: 'Home'
-              }
-            }]
-          }
-      },
-      {
-        stack: {
-          children: [{
-            component: {
-              name: 'Category'
-            }
-          }]
-        }
-      },
-      {
-        stack: {
-          children: [{
-            component: {
-              name: 'Cart'
-            }
-          }]
-        }
-      },
-      {
-        stack: {
-          children: [{
-            component: {
-              name: 'Account'
-            }
-          }]
-        }
-      },
-    ]
-    }
-  }
+            children: [
+              {
+                component: {
+                  name: 'Home',
+                },
+              },
+            ],
+          },
+        },
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Category',
+                },
+              },
+            ],
+          },
+        },
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Cart',
+                },
+              },
+            ],
+          },
+        },
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Account',
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
 };
 
 Navigation.events().registerAppLaunchedListener(async () => {
@@ -115,21 +130,21 @@ Navigation.events().registerAppLaunchedListener(async () => {
 // set all navigation this the same
 Navigation.setDefaultOptions({
   statusBar: {
-    backgroundColor: '#4d089a'
+    backgroundColor: '#4d089a',
   },
   topBar: {
     title: {
-      color: 'white'
+      color: 'white',
     },
     backButton: {
-      color: 'white'
+      color: 'white',
     },
     background: {
-      color: '#4d089a'
-    }
+      color: '#4d089a',
+    },
   },
   bottomTab: {
     fontSize: 14,
-    selectedFontSize: 14
-  }
+    selectedFontSize: 14,
+  },
 });
