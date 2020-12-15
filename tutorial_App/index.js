@@ -124,8 +124,12 @@ const mainRoot = {
 };
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  Navigation.setRoot(loginRoot);
+  Navigation.setRoot(isLogin ? mainRoot : loginRoot);
 });
+
+const isLogin = () => {
+  return true
+}
 
 // set all navigation this the same
 Navigation.setDefaultOptions({
