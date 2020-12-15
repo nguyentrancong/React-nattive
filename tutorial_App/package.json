@@ -13,10 +13,13 @@
     "@unimodules/core": "^6.0.0",
     "@unimodules/react-native-adapter": "^5.7.0",
     "expo-constants": "^9.3.4",
+    "i": "^0.3.6",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-elements": "^3.0.0-alpha.1",
-    "react-native-navigation": "^7.6.0"
+    "react-native-navigation": "^7.6.0",
+    "react-native-swiper": "^1.6.0",
+    "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

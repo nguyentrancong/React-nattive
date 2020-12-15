@@ -8,6 +8,7 @@ target 'tutorial_App' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'tutorial_AppTests' do
     inherit! :complete
     # Pods for testing

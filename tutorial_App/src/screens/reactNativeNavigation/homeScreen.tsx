@@ -17,6 +17,9 @@ import {
     FlatList,
 
 } from 'react-native';
+
+import { Badge, withBadge } from 'react-native-elements';
+
 import TextInputSearch from './home/textInputSearchComponent';
 import { Courses } from '../coreComponents/flatList/index';
 import CourseItemComponent from "../coreComponents/flatList/courseItemComponent";
@@ -26,23 +29,7 @@ const windowHeight = Dimensions.get('window').height;
 
 // Home screen declaration
 const HomeScreen = () => {
-  const dummyData = [
-    'Text',
-    'Input',
-    'Button',
-    'Card',
-    'CheckBox',
-    'Divider',
-    'Header',
-    'List Item',
-    'Pricing',
-    'Rating',
-    'Search Bar',
-    'Slider',
-    'Tile',
-    'Icon',
-    'Avatar',
-  ];
+
   let AnimatedHeaderValue = new Animated.Value(0);
   const Header_Maximum_Height = 110;
   //Max Height of the Header
@@ -132,9 +119,19 @@ const HomeScreen = () => {
               <View style={{flexDirection: 'row'}}>
                   <TouchableOpacity onPress={btCart} style={{paddingTop: 10, paddingRight: 16}}>
                       <Image style={{height: 40, width: 40}} source={require('../../images/cart_ic.png')}/>
+                      <Badge
+                        status="error"
+                        value="19"
+                        containerStyle={{ position: 'absolute', top: 10, right: 5 }}
+                      />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={btNotification} style={{paddingTop: 15, paddingRight: 16}}>
                       <Image style={{height: 30, width: 30}} source={require('../../images/notification_ic.png')}/>
+                      <Badge
+                        status="error"
+                        value="19"
+                        containerStyle={{ position: 'absolute', top: 10, right: 5 }}
+                      />
                   </TouchableOpacity>
               </View>
             </View>
@@ -149,23 +146,6 @@ const HomeScreen = () => {
               <TextInputSearch placeholder='Tìm kiếm F99' searchHandle={btSearchHandle}/>
             </Animated.View>
         </Animated.View>
-        {/* <ScrollView
-          scrollEventThrottle={16}
-          onScroll={Animated.event(
-            [{
-              nativeEvent: {
-                contentOffset: { y: AnimatedHeaderValue }
-              }
-            }],
-            { useNativeDriver: false }
-          )}>
-          {dummyData.map((item, index) => (
-            <Text style={styles.textStyle} key={index}>
-              {item}
-            </Text>
-          ))}
-        </ScrollView> */}
-
         <FlatList
           data={Courses}
           renderItem={({item}) => {
