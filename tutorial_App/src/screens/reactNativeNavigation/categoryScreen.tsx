@@ -41,12 +41,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     slide2: {
-        backgroundColor: 'yellow',
-        flex: 1
+        backgroundColor: 'yellow'
     },
     slide3: {
-        backgroundColor: 'green',
-        flex: 1
+        backgroundColor: 'green'
     }
 });
 

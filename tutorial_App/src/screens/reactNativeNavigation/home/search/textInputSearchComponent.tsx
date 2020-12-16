@@ -20,7 +20,7 @@ const TextInputSearch = ({
     return (
         <TouchableOpacity onPress={searchHandle} style={styles.contentSearch}>
             <Image style={styles.imageSearch}
-                source={require('../../../images/search.png')}
+                source={require('../../../../images/search.png')}
             />
             <TextInput
                 placeholder={placeholder}

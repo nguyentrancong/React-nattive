@@ -20,9 +20,11 @@ import {
 
 import { Badge, withBadge } from 'react-native-elements';
 
-import TextInputSearch from './home/textInputSearchComponent';
+import TextInputSearch from './home/search/textInputSearchComponent';
 import { Courses } from '../coreComponents/flatList/index';
 import CourseItemComponent from "../coreComponents/flatList/courseItemComponent";
+import BannerSwiper from './home/banner/bannerComponent';
+import { Home, Banner, HomeSection, SectionType, DirectionType } from './home';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -84,6 +86,11 @@ const HomeScreen = () => {
       Alert.alert("Action", "todo in to search screen");
     }
 
+    const handleBannerSelect = (banner) => {
+      // todo: in to select banner
+      Alert.alert("Action", 'select banner :' + banner.id);
+    }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -97,12 +104,10 @@ const HomeScreen = () => {
           ]}>
             <View 
               style={{
-                // backgroundColor: 'yellow',
                 width: windowWidth,
                 alignItems:'center',
                 flexDirection: 'row',
                 justifyContent:'space-between',
-                // padding: 8,
               }}
             >
               <View>
@@ -147,13 +152,19 @@ const HomeScreen = () => {
             </Animated.View>
         </Animated.View>
         <FlatList
-          data={Courses}
-          renderItem={({item}) => {
+          data={Home}
+          renderItem={({item, key}) => {
+            if (item.sectionType === SectionType.Banner && item.data as Banner[] ) {
               return (
-                  <CourseItemComponent id={item.id} title={item.title} desc={item.desc} images={item.images} />
+                <BannerSwiper key={key} id={item.id} title={item.title} sectionType={item.sectionType} direction={item.direction} data={item.data} images={item.images} onPressHandle={handleBannerSelect} />
+              );
+            } else 
+              return (
+                <Text>Other</Text>
+                  // <CourseItemComponent id={item.id} title={item.title} desc={item.desc} images={item.images} />
               );
           }}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
           scrollEventThrottle={16}
           onScroll={Animated.event(
             [{
