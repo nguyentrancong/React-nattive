@@ -25,6 +25,8 @@ import { Courses } from '../coreComponents/flatList/index';
 import CourseItemComponent from "../coreComponents/flatList/courseItemComponent";
 import BannerSwiper from './home/banner/bannerComponent';
 import { Home, Banner, HomeSection, SectionType, DirectionType } from './home';
+import QuickAccessComponent from './home/quickAccess/quickAccessComponent';
+import {QuickAccess} from './home/quickAccess/index';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -89,6 +91,10 @@ const HomeScreen = () => {
     const handleBannerSelect = (banner) => {
       // todo: in to select banner
       Alert.alert("Action", 'select banner :' + banner.id);
+    }
+
+    const handleQuickAccess = () => {
+      // todo: in to select banner
     }
 
   return (
@@ -158,12 +164,16 @@ const HomeScreen = () => {
               return (
                 <BannerSwiper key={key} id={item.id} title={item.title} sectionType={item.sectionType} direction={item.direction} data={item.data} images={item.images} onPressHandle={handleBannerSelect} />
               );
-            } else 
+            } else if (item.sectionType === SectionType.QuickAccess && item.data as QuickAccess[]) {
               return (
-                <Text>Other</Text>
+                <QuickAccessComponent key={key} selectHandle={handleQuickAccess} data={item}/>
+              );
+            } else {
+              return (
+                <Text key={key}>Other</Text>
                   // <CourseItemComponent id={item.id} title={item.title} desc={item.desc} images={item.images} />
               );
-          }}
+          }}}
           keyExtractor={item => item.id.toString()}
           scrollEventThrottle={16}
           onScroll={Animated.event(

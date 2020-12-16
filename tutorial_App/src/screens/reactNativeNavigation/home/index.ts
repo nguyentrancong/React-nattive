@@ -1,3 +1,5 @@
+import { QuickAccess, quickAccessList} from './quickAccess/index';
+
 enum SectionType {
     Banner = 0,
     QuickAccess,
@@ -62,10 +64,10 @@ const Home: HomeSection[] = [
     //quick access
     {
         id: 2,
-        title: 'Banner header',
-        data: banners,
+        title: 'Quick Access',
+        data: quickAccessList,
         images: [],
-        sectionType: SectionType.Banner,
+        sectionType: SectionType.QuickAccess,
         direction: DirectionType.normal
     },
 
