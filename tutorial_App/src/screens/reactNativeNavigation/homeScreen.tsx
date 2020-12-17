@@ -168,9 +168,13 @@ const HomeScreen = () => {
               return (
                 <QuickAccessComponent key={key} selectHandle={handleQuickAccess} data={item}/>
               );
+            } else if (item.sectionType === SectionType.GroupBuy) {
+              return (
+                <Text> Group buy </Text>
+              );
             } else {
               return (
-                <Text key={key}>Other</Text>
+                <Text key={key} style={{textAlign: 'center', height: 50, backgroundColor: 'gray', color: 'white'}}>{item.title}</Text>
                   // <CourseItemComponent id={item.id} title={item.title} desc={item.desc} images={item.images} />
               );
           }}}

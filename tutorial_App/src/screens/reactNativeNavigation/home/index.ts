@@ -1,10 +1,12 @@
 import { QuickAccess, quickAccessList} from './quickAccess/index';
-
+import {Banner, banners} from './banner/index'
 enum SectionType {
     Banner = 0,
     QuickAccess,
     SaleOff,
     ComboHot,
+    GroupBuy,
+    Product,
 }
 
 enum DirectionType {
@@ -21,35 +23,6 @@ interface HomeSection {
     sectionType: SectionType;
     direction: DirectionType;
 }
-
-interface Banner {
-    id: number;
-    title: string;
-    desc: string;
-    image: string;
-}
-
-//mock data Banner
-const banners: Banner[] = [
-    {
-        id: 1,
-        title: '1',
-        desc: 'Banner demo',
-        image: 'http://tutofox.com/foodapp//banner/banner-1.jpg',
-    },
-    {
-        id: 2,
-        title: '2',
-        desc: 'Banner demo2',
-        image: 'http://tutofox.com/foodapp//banner/banner-2.jpg',
-    },
-    {
-        id: 3,
-        title: '3',
-        desc: 'Banner demo3',
-        image: 'http://tutofox.com/foodapp//banner/banner-3.png',
-    }
-]
 
 const Home: HomeSection[] = [
     //banner
@@ -69,6 +42,15 @@ const Home: HomeSection[] = [
         images: [],
         sectionType: SectionType.QuickAccess,
         direction: DirectionType.normal
+    },
+    //group buy
+    {
+        id: 3,
+        title: 'Group buy',
+        data: [],
+        images: [],
+        sectionType: SectionType.GroupBuy,
+        direction: DirectionType.horizontal
     },
 
 ];

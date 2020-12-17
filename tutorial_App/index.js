@@ -39,7 +39,7 @@ import HomeScreen from './src/screens/reactNativeNavigation/homeScreen';
 import SettingsScreen from './src/screens/reactNativeNavigation/settingScreen';
 import CartScreen from './src/screens/reactNativeNavigation/cartScreen';
 import AccountScreen from './src/screens/reactNativeNavigation/accountScreen';
-import CategoryScreen from './src/screens/reactNativeNavigation/categoryScreen';
+import CategoryScreen from './src/screens/reactNativeNavigation/category/categoryScreen';
 import LoginContent from './src/screens/reactNativeNavigation/login/loginContent';
 
 const LoginScreen = () => {
