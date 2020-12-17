@@ -11,12 +11,12 @@ import {
 import { COLORS, icons, images, SIZES, FONTS } from '../../../constants';
 import RestaurantItem from './restaurantItem';
 
-const RestaurantList = ({restaurants, categories}) => {
+const RestaurantList = ({navigation, currentLocation, restaurants, categories}) => {
     return(
         <FlatList style={styles.flatList}
             data={restaurants}
             keyExtractor={item => `${item.id}`}
-            renderItem={({item}) => (<RestaurantItem item={item} categories={categories} />)}
+            renderItem={({item}) => (<RestaurantItem item={item} categories={categories} navigation={navigation} currentLocation={currentLocation} />)}
             contentContainerStyle={{
                 padding: SIZES.padding * 2,
                 paddingBottom: 20,

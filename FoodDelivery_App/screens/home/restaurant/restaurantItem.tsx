@@ -10,7 +10,7 @@ import {
  } from 'react-native';
 import { COLORS, icons, images, SIZES, FONTS } from '../../../constants';
 
-const RestaurantItem = ({item, categories}) => {
+const RestaurantItem = ({navigation, currentLocation, item, categories}) => {
 
     const getCategoryNameById = (id) => {
         let category = categories.filter(item => item.id == id)
@@ -25,6 +25,10 @@ const RestaurantItem = ({item, categories}) => {
         <TouchableOpacity
             style={{marginBottom: SIZES.padding * 2}}
             //todo: navigation to restaurant screen
+            onPress={() => navigation.navigate("Restaurant", {
+                item,
+                currentLocation
+            })}
         >
             {/* Image */}
             <View

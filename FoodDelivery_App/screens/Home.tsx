@@ -16,7 +16,7 @@ import HeaderComponent from './home/headerComponent/headerComponent';
 import { restaurantData, categoryData, initialCurrentLocation } from './home/mockData';
 import RestaurantList from './home/restaurant/restaurantList';
 
- const Home = () => {
+ const Home = ({navigation}) => {
 
     const [categories, setCategories] = useState(categoryData)
     const [selectedCategory, setSelectedCategory] = useState(null)
@@ -37,7 +37,7 @@ import RestaurantList from './home/restaurant/restaurantList';
          <SafeAreaView style={styles.container}>
              <HeaderComponent/>
              <MainCategories onSelectCategory={onSelectCategory} selectedCategory={selectedCategory} />
-             <RestaurantList restaurants={restaurants} categories={categories} />
+             <RestaurantList restaurants={restaurants} categories={categories} navigation={navigation} currentLocation={currentLocation} />
          </SafeAreaView>
      );
  }
