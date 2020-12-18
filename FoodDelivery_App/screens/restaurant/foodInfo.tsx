@@ -11,15 +11,18 @@ import {
  import { isIphoneX } from 'react-native-iphone-x-helper';
  import { COLORS, icons, images, SIZES, FONTS } from '../../constants';
 
- const FoodInfo = ({ restaurant }) => {
+
+ const FoodInfo = ({ restaurant, scrollX, editOrderHandle, getOrderQty }) => {
      return (
          <Animated.ScrollView
             horizontal
-            pagingEnable
+            pagingEnabled
             scrollEventThrottle={16}
             snapToAlignment='center'
             showsHorizontalScrollIndicator={false}
-            //onScroll
+            onScroll={Animated.event([
+                { nativeEvent: { contentOffset: { x: scrollX } } }
+            ], { useNativeDriver: false })}
          >
              {
                  restaurant?.menu.map((item, index) => (
@@ -57,6 +60,7 @@ import {
                                         borderTopLeftRadius: 25,
                                         borderBottomLeftRadius: 25,
                                     }}
+                                    onPress={() => editOrderHandle("-", item.menuId, item.price)}
                                 >
                                     <Text style={{...FONTS.body1}}>-</Text>
                                 </TouchableOpacity>
@@ -69,7 +73,7 @@ import {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <Text style={{...FONTS.body2}}>5</Text>
+                                    <Text style={{...FONTS.body2}}>{getOrderQty(item.menuId)}</Text>
                                 </View>
 
                                 <TouchableOpacity
@@ -81,6 +85,7 @@ import {
                                         borderTopRightRadius: 25,
                                         borderBottomRightRadius: 25,
                                     }}
+                                    onPress={() => editOrderHandle("+", item.menuId, item.price)}
                                 >
                                     <Text style={{...FONTS.body1}}>+</Text>
                                 </TouchableOpacity>
