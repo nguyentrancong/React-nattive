@@ -4,10 +4,13 @@ import {
     StyleSheet,
     Text,
     Alert,
+    TouchableOpacity,
  } from 'react-native';
 import MapComponent from './orderDelivery/mapComponent';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { COLORS, icons, images, SIZES, FONTS, GOOGLE_API_KEY } from '../constants';
+import DestinationHeader from './orderDelivery/destinationHeader';
+import DeliveryInfo from './orderDelivery/deliveryInfo';
 
 
  const OrderDelivery = ({ route, navigation }) => { 
@@ -20,7 +23,7 @@ import { COLORS, icons, images, SIZES, FONTS, GOOGLE_API_KEY } from '../constant
     const [toLocation, setToLocation] = useState(null)
     const [region, setRegion] = useState(null)
 
-    const [duration, setDuration] = React.useState(0)
+    const [duration, setDuration] = React.useState(10)
     const [isReady, setIsReady] = React.useState(false)
     const [angle, setAngle] = React.useState(0)
 
@@ -36,27 +39,30 @@ import { COLORS, icons, images, SIZES, FONTS, GOOGLE_API_KEY } from '../constant
     }
 
     function zoomIn() {
-        let newRegion = {
-            latitude: region.latitude,
-            longitude: region.longitude,
-            latitudeDelta: region.latitudeDelta / 2,
-            longitudeDelta: region.longitudeDelta / 2
-        }
+        // let newRegion = {
+        //     latitude: region.latitude,
+        //     longitude: region.longitude,
+        //     latitudeDelta: region.latitudeDelta / 2,
+        //     longitudeDelta: region.longitudeDelta / 2
+        // }
 
-        setRegion(newRegion)
-        mapView.current.animateToRegion(newRegion, 200)
+        // setRegion(newRegion)
+        // mapView.current.animateToRegion(newRegion, 200)
+
+        Alert.alert("Zoom in")
     }
 
     function zoomOut() {
-        let newRegion = {
-            latitude: region.latitude,
-            longitude: region.longitude,
-            latitudeDelta: region.latitudeDelta * 2,
-            longitudeDelta: region.longitudeDelta * 2
-        }
+        // let newRegion = {
+        //     latitude: region.latitude,
+        //     longitude: region.longitude,
+        //     latitudeDelta: region.latitudeDelta * 2,
+        //     longitudeDelta: region.longitudeDelta * 2
+        // }
 
-        setRegion(newRegion)
-        mapView.current.animateToRegion(newRegion, 200)
+        // setRegion(newRegion)
+        // mapView.current.animateToRegion(newRegion, 200)
+        Alert.alert('Zoom out')
     }
 
     useEffect(() => {
@@ -89,6 +95,15 @@ import { COLORS, icons, images, SIZES, FONTS, GOOGLE_API_KEY } from '../constant
                 calculateAngle={calculateAngle} setAngle={setAngle} 
                 setFromLocation={setFromLocation} setIsReady={setIsReady} 
             />
+            
+            {/* Destination Header */}
+            <DestinationHeader streetName={streetName} duration={duration}/>
+
+            {/* Delivery Info */}
+            <DeliveryInfo restaurant={restaurant} navigation={navigation}/>
+
+            {/* Buttom zoom */}
+            <ButtomZoom zoomIn={zoomIn} zoomOut={zoomOut}/>
          </View>
      );
  }
@@ -98,3 +113,49 @@ import { COLORS, icons, images, SIZES, FONTS, GOOGLE_API_KEY } from '../constant
  });
 
  export default OrderDelivery;
+
+ const ButtomZoom = ({ zoomIn, zoomOut }) => {
+     return (
+         <View
+            style={{
+                position: 'absolute',
+                bottom: SIZES.height * 0.35,
+                right: SIZES.padding * 2,
+                width: 60,
+                height: 130,
+                justifyContent: 'space-between',
+            }}
+         >
+             {/* Zoom in  */}
+            <TouchableOpacity
+                style={{
+                    width: 60,
+                    height: 60,
+                    borderRadius: 30,
+                    backgroundColor: COLORS.white,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+                onPress={() => zoomIn()}
+            >
+                <Text style={{...FONTS.body1}}>+</Text>
+            </TouchableOpacity>
+            
+             {/* Zoom out  */}
+             <TouchableOpacity
+                style={{
+                    width: 60,
+                    height: 60,
+                    borderRadius: 30,
+                    backgroundColor: COLORS.white,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+                onPress={() => zoomOut()}
+            >
+                <Text style={{...FONTS.body1}}>-</Text>
+            </TouchableOpacity>
+
+         </View>
+     )
+ }

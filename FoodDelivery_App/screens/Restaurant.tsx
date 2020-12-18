@@ -84,7 +84,7 @@ import OrderComponent from './restaurant/orderRestaurant';
 
      return(
          <SafeAreaView style={styles.container}>
-             <HeaderRestaurant restaurant={restaurant}/>
+             <HeaderRestaurant restaurant={restaurant} navigation={navigation} />
              <FoodInfo restaurant={restaurant} scrollX={scrollX} editOrderHandle={editOrderHandle} getOrderQty={getOrderQty} />
              <OrderComponent scrollX={scrollX} restaurant={restaurant} navigation={navigation} currentLocation={currentLocation} sumOrder={sumOrder} getBasketItemCount={getBasketItemCount} />
          </SafeAreaView>

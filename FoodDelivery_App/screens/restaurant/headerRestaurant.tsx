@@ -11,10 +11,10 @@ import {
  import { isIphoneX } from 'react-native-iphone-x-helper';
  import { COLORS, icons, images, SIZES, FONTS } from '../../constants';
  
- const HeaderRestaurant = ({ restaurant }) => {
+ const HeaderRestaurant = ({ restaurant, navigation }) => {
      return (
         <View style={styles.content}>
-            <TouchableOpacity style={styles.touchableButtonBack}>
+            <TouchableOpacity style={styles.touchableButtonBack} onPress={() => navigation.goBack()}>
                 <Image 
                     style={styles.imageBtBack} 
                     source={icons.back}
