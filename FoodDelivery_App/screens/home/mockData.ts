@@ -66,8 +66,8 @@ const fairPrice = 2
 const expensive = 3
 
 interface Location {
-    latitude: number;
-    longitude: number;
+    latitude: any;
+    longitude: any;
 }
 
 interface Courier {
