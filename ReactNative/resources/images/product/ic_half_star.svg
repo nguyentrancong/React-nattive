@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 12 12">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_7177" data-name="Rectangle 7177" width="6" height="12" transform="translate(92 647)" fill="#9b9b9b"/>
+    </clipPath>
+  </defs>
+  <g id="_50" data-name="50" transform="translate(-76 -633)">
+    <g id="Group_10640" data-name="Group 10640" transform="translate(0 68)">
+      <g id="Group_10639" data-name="Group 10639" transform="translate(60 -91)">
+        <path id="Polygon_2" data-name="Polygon 2" d="M6,0,7.8,4.028l4.2.555L8.912,7.628,9.708,12,6,9.853,2.292,12l.8-4.372L0,4.584l4.2-.555Z" transform="translate(16 656)" fill="#f90"/>
+      </g>
+    </g>
+    <g id="Mask_Group_708" data-name="Mask Group 708" transform="translate(-10 -14)" clip-path="url(#clip-path)">
+      <g id="Group_10947" data-name="Group 10947" transform="translate(10 82)">
+        <g id="Group_10639-2" data-name="Group 10639" transform="translate(60 -91)">
+          <path id="Polygon_2-2" data-name="Polygon 2" d="M6,0,7.8,4.028l4.2.555L8.912,7.628,9.708,12,6,9.853,2.292,12l.8-4.372L0,4.584l4.2-.555Z" transform="translate(16 656)" fill="#9b9b9b"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

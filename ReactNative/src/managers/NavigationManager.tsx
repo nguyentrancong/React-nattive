@@ -21,7 +21,7 @@ class ManagerNavigation {
                             },
                           },
                           bottomTab: {
-                            text: 'Home',
+                            text: 'Trang Chủ',
                           },
                         },
                       },
@@ -34,15 +34,15 @@ class ManagerNavigation {
                   children: [
                     {
                       component: {
-                        name: 'Category',
+                        name: 'Order',
                         options: {
                           topBar: {
                             title: {
-                              text: 'Category',
+                              text: 'Đặt Món',
                             },
                           },
                           bottomTab: {
-                            text: 'Category',
+                            text: 'Đặt Món',
                           },
                         },
                       },
@@ -55,15 +55,57 @@ class ManagerNavigation {
                   children: [
                     {
                       component: {
-                        name: 'Favorite',
+                        name: 'Shop',
                         options: {
                           topBar: {
                             title: {
-                              text: 'Favorite',
+                              text: 'Của Hàng',
                             },
                           },
                           bottomTab: {
-                            text: 'Favorite',
+                            text: 'Cửa Hàng',
+                          },
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        name: 'AccoumulatePoint',
+                        options: {
+                          topBar: {
+                            title: {
+                              text: 'Tích Điểm',
+                            },
+                          },
+                          bottomTab: {
+                            text: 'Tích Điểm',
+                          },
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        name: 'Other',
+                        options: {
+                          topBar: {
+                            title: {
+                              text: 'Khác',
+                            },
+                          },
+                          bottomTab: {
+                            text: 'Khác',
                           },
                         },
                       },
