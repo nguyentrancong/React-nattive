@@ -49,16 +49,8 @@ export default class HomeScreen extends NavigationComponent<Props> {
           dataProvider={this._dataProvider.cloneWithRows(DATA)}
           layoutProvider={this._layoutProvider}
           rowRenderer={this._renderRow}
-          // onEndReached={this._fetch}
           scrollViewProps={{
             showsVerticalScrollIndicator: false,
-            // refreshControl: (
-            //   <RefreshControl
-            //     colors={['#9Bd35A', '#689F38']}
-            //     refreshing={loading}
-            //     onRefresh={this._refresh}
-            //   />
-            // ),
           }}
         />
       </View>
