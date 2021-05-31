@@ -8,10 +8,21 @@ import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {PDescriptionType, Product} from '../common/models/Product';
 import {colors} from '../utils/Colors';
 import {dimensions} from '../utils/Constant';
+import PriceUtils from '../utils/PriceUtils';
 
-const DATA: Product[] = [
+enum ItemType {
+  HEADER = 'HEADER',
+  ROW = 'ROW',
+}
+
+const DATA: any[] = [
+  {
+    type: ItemType.HEADER,
+    title: 'Món phải thử',
+  },
   {
     id: 1,
+    type: ItemType.ROW,
     name: 'Trà Sửa Oolong Nướng',
     price: {price: 500000, discount: 0},
     desc: {
@@ -23,6 +34,7 @@ const DATA: Product[] = [
   },
   {
     id: 2,
+    type: ItemType.ROW,
     name: 'Trà Sửa Oolong Nướng',
     price: {price: 500000, discount: 0},
     desc: {
@@ -34,6 +46,7 @@ const DATA: Product[] = [
   },
   {
     id: 3,
+    type: ItemType.ROW,
     name: 'Trà Sửa Oolong Nướng',
     price: {price: 500000, discount: 0},
     desc: {
@@ -45,6 +58,7 @@ const DATA: Product[] = [
   },
   {
     id: 4,
+    type: ItemType.ROW,
     name: 'Trà Sửa Oolong Nướng',
     price: {price: 500000, discount: 0},
     desc: {
@@ -56,6 +70,71 @@ const DATA: Product[] = [
   },
   {
     id: 5,
+    type: ItemType.ROW,
+    name: 'Trà Sửa Oolong Nướng',
+    price: {price: 500000, discount: 0},
+    desc: {
+      id: 1,
+      type: PDescriptionType.TEXT,
+      content:
+        'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
+    },
+  },
+  {
+    type: ItemType.HEADER,
+    title: 'Coffee',
+  },
+  {
+    id: 1,
+    type: ItemType.ROW,
+    name: 'Trà Sửa Oolong Nướng',
+    price: {price: 500000, discount: 0},
+    desc: {
+      id: 1,
+      type: PDescriptionType.TEXT,
+      content:
+        'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
+    },
+  },
+  {
+    id: 2,
+    type: ItemType.ROW,
+    name: 'Trà Sửa Oolong Nướng',
+    price: {price: 500000, discount: 0},
+    desc: {
+      id: 1,
+      type: PDescriptionType.TEXT,
+      content:
+        'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
+    },
+  },
+  {
+    id: 3,
+    type: ItemType.ROW,
+    name: 'Trà Sửa Oolong Nướng',
+    price: {price: 500000, discount: 0},
+    desc: {
+      id: 1,
+      type: PDescriptionType.TEXT,
+      content:
+        'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
+    },
+  },
+  {
+    id: 4,
+    type: ItemType.ROW,
+    name: 'Trà Sửa Oolong Nướng',
+    price: {price: 500000, discount: 0},
+    desc: {
+      id: 1,
+      type: PDescriptionType.TEXT,
+      content:
+        'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
+    },
+  },
+  {
+    id: 5,
+    type: ItemType.ROW,
     name: 'Trà Sửa Oolong Nướng',
     price: {price: 500000, discount: 0},
     desc: {
@@ -81,36 +160,56 @@ class OrderScreen extends NavigationComponent<Props> {
     });
 
     this._layoutProvider = new LayoutProvider(
-      index => 1,
+      index => {
+        return DATA[index].type;
+      },
       (type, dim, index) => {
-        const imgHeight = 80;
-        const padding = 16 * 2;
-        const separatorHeight = 1;
-        const itemHeight = imgHeight + padding + separatorHeight;
-        dim.width = dimensions.screenWidth;
-        dim.height = itemHeight;
+        switch (type) {
+          case ItemType.HEADER:
+            (dim.height = 54), (dim.width = dimensions.screenWidth);
+            break;
+          default:
+            const imgHeight = 80;
+            const padding = 16 * 2;
+            const separatorHeight = 1;
+            const itemHeight = imgHeight + padding + separatorHeight;
+            dim.width = dimensions.screenWidth;
+            dim.height = itemHeight;
+            break;
+        }
       },
     );
   }
 
-  _renderRow = (type: any, data: Product) => {
-    return (
-      <View style={styles.item}>
-        <View style={styles.infoItem}>
-          <Text style={styles.titleItem}>{data.name}</Text>
-          <Text style={styles.descItem} numberOfLines={2}>
-            {data.desc?.content}
-          </Text>
-          <Text style={styles.priceItem}>{data.price?.price}</Text>
-        </View>
-        <Image
-          style={styles.imageItem}
-          source={{
-            uri: 'https://previews.123rf.com/images/ketmut/ketmut1903/ketmut190300082/121087489-a-cup-of-black-coffee-isometric-view-realistic-vector-3d-model-americano-in-white-cup-isolated-on-wh.jpg',
-          }}
-        />
-      </View>
-    );
+  _renderRow = (type: any, data: any[]) => {
+    switch (type) {
+      case ItemType.HEADER:
+        return (
+          <View style={styles.headerItem}>
+            <Text style={styles.titleHeader}>{data.title}</Text>
+          </View>
+        );
+      default:
+        return (
+          <View style={styles.item}>
+            <View style={styles.infoItem}>
+              <Text style={styles.titleItem}>{data.name}</Text>
+              <Text style={styles.descItem} numberOfLines={2}>
+                {data.desc?.content}
+              </Text>
+              <Text style={styles.priceItem}>
+                {PriceUtils.format(data.price?.price || 0)}
+              </Text>
+            </View>
+            <Image
+              style={styles.imageItem}
+              source={{
+                uri: 'https://previews.123rf.com/images/ketmut/ketmut1903/ketmut190300082/121087489-a-cup-of-black-coffee-isometric-view-realistic-vector-3d-model-americano-in-white-cup-isolated-on-wh.jpg',
+              }}
+            />
+          </View>
+        );
+    }
   };
 
   render() {
@@ -160,7 +259,7 @@ const styles = StyleSheet.create({
   },
   titleItem: {
     color: colors.black,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   descItem: {
@@ -179,6 +278,18 @@ const styles = StyleSheet.create({
     height: 75,
     width: 75,
     borderRadius: 6,
+  },
+  headerItem: {
+    flex: 1,
+    marginTop: 10,
+    marginHorizontal: 16,
+    flexDirection: 'column-reverse',
+    marginBottom: 8,
+  },
+  titleHeader: {
+    color: colors.black,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
