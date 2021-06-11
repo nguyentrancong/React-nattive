@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Address} from '@common/models/Address';
+import {Address} from '@models/Address';
 import {colors} from '@utils/Colors';
 
 interface Props {

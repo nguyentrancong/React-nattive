@@ -11,7 +11,7 @@ import {
   NavigationComponentProps,
 } from 'react-native-navigation';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {AddressType, Address} from '@common/models/Address';
+import {AddressType, Address} from '@models/Address';
 import NavigationManager from '@managers/NavigationManager';
 import {colors} from '@utils/Colors';
 import {dimensions} from '@utils/Constant';

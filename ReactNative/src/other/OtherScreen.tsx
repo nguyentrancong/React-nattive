@@ -4,20 +4,8 @@ import {
   NavigationComponent,
   NavigationComponentProps,
 } from 'react-native-navigation';
-import RowTitleDescriptionView from '@common/views/RowTitleDescriptionView';
-
-enum AccountItemType {
-  NORMAL = 'NORMAL',
-  ACCOUNT = 'ACCOUNT',
-}
-
-type Account = {
-  id: number;
-  title?: string;
-  desc?: string;
-  image?: number;
-  itemType?: AccountItemType;
-};
+import RowTitleDescriptionView from '@views/TitleDescriptionButtonView';
+import {Account, AccountItemType} from '@models/Account';
 
 const DATA: Account[] = [
   {
@@ -64,7 +52,13 @@ class OtherScreen extends NavigationComponent<Props> {
   };
 
   _renderItem = ({item, index}: {item: any; index: number}) => {
-    return <RowTitleDescriptionView data={item} key={index} />;
+    return (
+      <RowTitleDescriptionView
+        title={item.title}
+        description={item?.desc}
+        key={index}
+      />
+    );
   };
 
   render() {

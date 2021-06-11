@@ -18,8 +18,12 @@ module.exports = {
             rootPathPrefix: '@managers/',
           },
           {
-            rootPathSuffix: './src/common',
-            rootPathPrefix: '@common/',
+            rootPathSuffix: './src/common/views',
+            rootPathPrefix: '@views/',
+          },
+          {
+            rootPathSuffix: './src/common/models',
+            rootPathPrefix: '@models/',
           },
         ],
       },

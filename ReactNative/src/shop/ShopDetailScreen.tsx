@@ -5,10 +5,11 @@ import {
   NavigationComponent,
   NavigationComponentProps,
 } from 'react-native-navigation';
-import {Address} from '@common/models/Address';
-import CloseButtonView from '@common/views/CloseButtonView';
+import {Address} from '@models/Address';
+import CloseButtonView from '@views/CloseButtonView';
 import {colors} from '@utils/Colors';
 import {dimensions} from '@utils/Constant';
+import ImageTitleRowButtonView from '@views/ImageTitleRowButtonView';
 
 interface Props extends NavigationComponentProps {
   data: Address;
@@ -42,7 +43,10 @@ class ShopDetailScreen extends NavigationComponent<Props> {
             <Text style={styles.address}>{title}</Text>
             <Text style={styles.time}>Giờ mở cửa: 07:00 - 22:00</Text>
           </View>
-          <View></View>
+          <ImageTitleRowButtonView
+            title={data.title}
+            image={require('@images/common/ic_close.png')}
+          />
         </ScrollView>
         {/* Button Close */}
         <CloseButtonView

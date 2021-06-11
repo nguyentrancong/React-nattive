@@ -44,6 +44,8 @@
       // "@navigation/*": ["src/navigation/*"],
       "@utils/*": ["src/utils/*"],
       "@common/*": ["src/common/*"],
+      "@models/*": ["src/common/models/*"],
+      "@views/*": ["src/common/views/*"],
       "@managers/*": ["src/managers/*"],
       // "@translations/*": ["src/translations/*"],
       // "@modules/*": ["src/modules/*"],

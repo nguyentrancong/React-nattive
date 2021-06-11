@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   TextStyle,
-  View,
   ViewStyle,
   ImageStyle,
   Image,
@@ -16,18 +15,22 @@ interface Props {
   viewStyle?: ViewStyle;
   imageStyle?: ImageStyle;
   textStyle?: TextStyle;
-  data?: any;
+  image?: number;
+  uri?: string;
+  title?: string;
 }
 const ImageTitleRowButtonView: React.FC<Props> = React.memo(
-  ({onPress, viewStyle, imageStyle, textStyle, data}) => {
-    const {image, title, uri} = data || {};
+  ({onPress, viewStyle, imageStyle, textStyle, image, uri, title}) => {
     return (
-      <Pressable onPress={onPress}>
+      <Pressable onPress={onPress} style={[styles.content, viewStyle]}>
         <Image
-          style={[imageStyle || styles.image]}
-          source={!!uri ? {uri: uri} : image}
+          style={[styles.image, imageStyle]}
+          source={
+            (!!uri ? {uri: uri} : image) ||
+            require('@images/common/ic_close.png')
+          }
         />
-        <Text style={[textStyle || styles.text]}>{title}</Text>
+        <Text style={[styles.text, textStyle]}>{title}</Text>
       </Pressable>
     );
   },
@@ -36,6 +39,10 @@ const ImageTitleRowButtonView: React.FC<Props> = React.memo(
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    backgroundColor: colors.white,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   image: {
     height: 20,
@@ -43,6 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   text: {
+    marginLeft: 8,
     fontSize: 14,
     fontWeight: '400',
     color: colors.black,

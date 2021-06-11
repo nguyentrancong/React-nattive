@@ -4,7 +4,6 @@ import {
   ImageStyle,
   Pressable,
   StyleSheet,
-  Text,
   View,
   ViewStyle,
 } from 'react-native';
@@ -17,10 +16,10 @@ interface Props {
 const CloseButtonView: React.FC<Props> = React.memo(
   ({viewStyle, imageStyle, imageString, onPress}) => {
     return (
-      <View style={[viewStyle || styles.content]}>
+      <View style={[styles.content, viewStyle]}>
         <Pressable onPress={onPress} style={styles.btClick}>
           <Image
-            style={[imageStyle || styles.image]}
+            style={[styles.image, imageStyle]}
             source={require('@images/common/ic_close.png')}
           />
         </Pressable>
