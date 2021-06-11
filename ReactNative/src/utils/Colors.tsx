@@ -16,6 +16,6 @@ export const colors = {
   gray: '#A9B8C0',
   line: '#607D8B33',
   inactive: '#808080',
-  background: '#F2F2F2',
+  background: 'rgba(242, 242, 242, 0.5)',
   purple: '#5631BF',
 };

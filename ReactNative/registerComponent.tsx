@@ -1,11 +1,3 @@
-import {Navigation} from 'react-native-navigation';
-import HomeScreen from './src/home/HomeScreen';
-import StoreScreen from './src/store/StoreScreen';
-import CategoryScreen from './src/order/OrderScreen';
-import AccoumulatePointScreen from './src/accoumulatePoint/AccoumulatePointScreen';
-import OtherScreen from './src/other/OtherScreen';
-import StoreDetailScreen from './src/store/StoreDetailScreen';
-import CartScreen from './src/order/CartScreen';
 import {
   ACCOUMULATED_POINT_SCREEN,
   CART_SCREEN,
@@ -14,8 +6,18 @@ import {
   ORDER_SCREEN,
   OTHER_SCREEN,
   SOTRE_DETAIL_SCREEN,
+  SOTRE_LIST_SCREEN,
   STORE_SCREEN,
 } from '@utils/Constant';
+import {Navigation} from 'react-native-navigation';
+import HomeScreen from './src/home/HomeScreen';
+import StoreScreen from './src/store/StoreScreen';
+import CategoryScreen from './src/order/OrderScreen';
+import AccoumulatePointScreen from './src/accoumulatePoint/AccoumulatePointScreen';
+import OtherScreen from './src/other/OtherScreen';
+import StoreDetailScreen from './src/store/StoreDetailScreen';
+import CartScreen from './src/order/CartScreen';
+import StoreListScreen from './src/store/StoreListScreen';
 
 //Home
 Navigation.registerComponent(HOME_SCREEN, () => HomeScreen);
@@ -23,6 +25,7 @@ Navigation.registerComponent(HOME_SCREEN, () => HomeScreen);
 //Store
 Navigation.registerComponent(STORE_SCREEN, () => StoreScreen);
 Navigation.registerComponent(SOTRE_DETAIL_SCREEN, () => StoreDetailScreen);
+Navigation.registerComponent(SOTRE_LIST_SCREEN, () => StoreListScreen);
 
 //Order
 Navigation.registerComponent(ORDER_SCREEN, () => CategoryScreen);

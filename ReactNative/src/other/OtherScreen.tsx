@@ -4,19 +4,20 @@ import {
   NavigationComponent,
   NavigationComponentProps,
 } from 'react-native-navigation';
-import RowTitleDescriptionView from '@views/TitleDescriptionButtonView';
+import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import {Account, AccountItemType} from '@models/Account';
+import {colors} from '@utils/Colors';
 
 const DATA: Account[] = [
   {
-    id: 1,
+    id: 0,
     title: 'Account',
     desc: undefined,
     image: undefined,
     itemType: AccountItemType.ACCOUNT,
   },
   {
-    id: 4,
+    id: 1,
     title: 'Hotline',
     desc: '0989.009.090',
     image: undefined,
@@ -53,10 +54,14 @@ class OtherScreen extends NavigationComponent<Props> {
 
   _renderItem = ({item, index}: {item: any; index: number}) => {
     return (
-      <RowTitleDescriptionView
+      <TitleDescriptionButtonView
         title={item.title}
         description={item?.desc}
         key={index}
+        viewStyle={{paddingVertical: 16}}
+        descriptionStyle={
+          item.id === 1 ? {color: colors.primary} : {color: colors.black}
+        }
       />
     );
   };

@@ -13,23 +13,24 @@ interface Props {
 const TitleDescriptionButtonView: React.FC<Props> = React.memo(
   ({titleStyle, descriptionStyle, viewStyle, onPress, title, description}) => {
     return (
-      <Pressable style={[styles.item, viewStyle]} onPress={onPress}>
-        <Text style={[styles.title, titleStyle]}>{title}</Text>
-        <Text style={[styles.desc, descriptionStyle]}>{description}</Text>
+      <Pressable style={[styles.view, viewStyle]} onPress={onPress}>
+        {!!title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
+        {!!description && (
+          <Text style={[styles.desc, descriptionStyle]}>{description}</Text>
+        )}
       </Pressable>
     );
   },
 );
 
 const styles = StyleSheet.create({
-  item: {
+  view: {
     flex: 1,
+    marginTop: 1,
     backgroundColor: colors.white,
     flexDirection: 'row',
-    marginTop: 1,
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     flex: 1,

@@ -10,36 +10,29 @@ import {
 interface Props {
   viewStyle?: ViewStyle;
   imageStyle?: ImageStyle;
-  imageString?: string;
-  onPress: () => void;
+  image?: number;
+  onPress?: () => void;
 }
 const CloseButtonView: React.FC<Props> = React.memo(
-  ({viewStyle, imageStyle, imageString, onPress}) => {
+  ({viewStyle, imageStyle, image, onPress}) => {
     return (
-      <View style={[styles.content, viewStyle]}>
-        <Pressable onPress={onPress} style={styles.btClick}>
-          <Image
-            style={[styles.image, imageStyle]}
-            source={require('@images/common/ic_close.png')}
-          />
-        </Pressable>
-      </View>
+      <Pressable onPress={onPress} style={[styles.view, viewStyle]}>
+        <Image
+          style={[styles.image, imageStyle]}
+          source={image ? image : require('@images/common/ic_close.png')}
+        />
+      </Pressable>
     );
   },
 );
 
 const styles = StyleSheet.create({
-  content: {
-    position: 'absolute',
+  view: {
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 35,
     width: 35,
     borderRadius: 22,
-    backgroundColor: 'rgba(230,230,230,0.5)',
-  },
-  btClick: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   image: {
     height: 22,

@@ -12,6 +12,7 @@ export const HOME_SCREEN = 'Home';
 //Store
 export const STORE_SCREEN = 'Store';
 export const SOTRE_DETAIL_SCREEN = 'StoreDetail';
+export const SOTRE_LIST_SCREEN = 'StoreList';
 
 //Order
 export const ORDER_SCREEN = 'Order';

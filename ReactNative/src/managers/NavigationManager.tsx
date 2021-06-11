@@ -182,6 +182,23 @@ class ManagerNavigation {
     Navigation.events().registerComponentDidAppearListener(
       this._setComponentId,
     );
+
+    Navigation.setDefaultOptions({
+      statusBar: {
+        backgroundColor: colors.primary,
+      },
+      topBar: {
+        title: {
+          color: colors.white,
+        },
+        backButton: {
+          color: colors.white,
+        },
+        background: {
+          color: colors.primary,
+        },
+      },
+    });
   }
 
   // Set component

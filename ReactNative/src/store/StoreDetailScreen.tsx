@@ -72,48 +72,42 @@ class StoreDetailScreen extends NavigationComponent<Props> {
             onPress={this._handleShowMap}
             title={data?.desc}
             image={require('@images/thoangque/directions_black_3x.png')}
-            viewStyle={{marginTop: 1, paddingVertical: 16}}
-            imageStyle={{height: 40, width: 40, tintColor: colors.darkGrey}}
+            viewStyle={{marginTop: 2, paddingVertical: 16}}
+            imageStyle={{height: 40, width: 40, tintColor: colors.primary}}
             titleStyle={{fontSize: 16, marginLeft: 12}}
           />
           <ImageTitleRowButtonView
             onPress={this._handleFavorites}
             title="Thêm vào danh sách yêu thích"
             image={require('@images/thoangque/star_border_black_3x.png')}
-            viewStyle={{marginTop: 1, height: 60}}
-            imageStyle={{height: 35, width: 35, tintColor: colors.darkGrey}}
+            viewStyle={{marginTop: 2, height: 60}}
+            imageStyle={{height: 35, width: 35, tintColor: colors.primary}}
             titleStyle={{fontSize: 16, marginLeft: 12}}
           />
           <ImageTitleRowButtonView
             onPress={this._handleContacts}
             title="Liên hệ"
             image={require('@images/thoangque/phone_black_3x.png')}
-            viewStyle={{marginTop: 1, height: 60}}
-            imageStyle={{height: 30, width: 30, tintColor: colors.darkGrey}}
+            viewStyle={{marginTop: 2, height: 60}}
+            imageStyle={{height: 30, width: 30, tintColor: colors.primary}}
             titleStyle={{fontSize: 16, marginLeft: 12}}
           />
           <ImageTitleRowButtonView
             onPress={this._handleShare}
             title="Chia sẻ với bạn bè"
             image={require('@images/thoangque/share_black_3x.png')}
-            viewStyle={{marginTop: 1, height: 60}}
-            imageStyle={{height: 30, width: 30, tintColor: colors.darkGrey}}
+            viewStyle={{marginTop: 2, height: 60}}
+            imageStyle={{height: 30, width: 30, tintColor: colors.primary}}
             titleStyle={{fontSize: 16, marginLeft: 12}}
           />
-          <View style={{height: isIphoneX() ? getBottomSpace() + 44 : 44}} />
+          <View style={{height: isIphoneX() ? getBottomSpace() + 30 : 44}} />
         </ScrollView>
 
         {/* Button order */}
         <TitleSubButtonView
           onPress={this._handleOrder}
           title="Đặt món"
-          viewStyle={{
-            position: 'absolute',
-            left: 16,
-            right: 16,
-            bottom: isIphoneX() ? getBottomSpace() + 16 : 16,
-            height: 44,
-          }}
+          viewStyle={styles.viewOrder}
           titleStyle={{color: colors.white}}
         />
 
@@ -132,12 +126,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   closeButton: {
+    position: 'absolute',
     top: 16,
     right: 16,
+    backgroundColor: colors.background,
   },
   scrollView: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: colors.background,
   },
   image: {
     height: dimensions.screenWidth,
@@ -167,6 +163,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     opacity: 0.5,
     color: colors.black,
+  },
+  viewOrder: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    bottom: isIphoneX() ? 30 : 16,
+    height: 44,
   },
 });
 

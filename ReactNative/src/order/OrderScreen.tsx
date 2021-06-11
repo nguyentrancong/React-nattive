@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet, View, Image} from 'react-native';
+import React from 'react';
+import {Text, StyleSheet, View, Image, Pressable} from 'react-native';
 import {
   NavigationComponent,
   NavigationComponentProps,
@@ -7,8 +7,12 @@ import {
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {PDescriptionType, Product} from '@models/Product';
 import {colors} from '@utils/Colors';
-import {dimensions} from '@utils/Constant';
+import {CART_SCREEN, dimensions} from '@utils/Constant';
 import PriceUtils from '@utils/PriceUtils';
+import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
+import OrderCategoryView from './orderComponents/OrderCategoryView';
+import NavigationManager from '@managers/NavigationManager';
+import Modal from 'react-native-modal';
 
 enum ItemType {
   HEADER = 'HEADER',
@@ -145,10 +149,13 @@ const DATA: any[] = [
     },
   },
 ];
+
 interface Props extends NavigationComponentProps {}
-class OrderScreen extends NavigationComponent<Props> {
+interface State {}
+class OrderScreen extends NavigationComponent<Props, State> {
   private _dataProvider: DataProvider;
   private _layoutProvider: LayoutProvider;
+  categoryRef: any;
 
   constructor(props: Props) {
     super(props);
@@ -184,11 +191,7 @@ class OrderScreen extends NavigationComponent<Props> {
   _renderRow = (type: any, data: any[]) => {
     switch (type) {
       case ItemType.HEADER:
-        return (
-          <View style={styles.headerItem}>
-            <Text style={styles.titleHeader}>{data?.title}</Text>
-          </View>
-        );
+        return <TitleDescriptionButtonView title={data?.title} />;
       default:
         return (
           <View style={styles.item}>
@@ -212,6 +215,14 @@ class OrderScreen extends NavigationComponent<Props> {
     }
   };
 
+  _handleCartVisible = () => {
+    NavigationManager.showModal(CART_SCREEN);
+  };
+
+  _handleCategoryVisible = () => {
+    this.categoryRef?.open();
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -222,8 +233,22 @@ class OrderScreen extends NavigationComponent<Props> {
           rowRenderer={this._renderRow}
           scrollViewProps={{
             showsVerticalScrollIndicator: false,
+            contentContainerStyle: {
+              paddingBottom: 80,
+            },
           }}
         />
+        <Pressable onPress={this._handleCartVisible} style={styles.btShowCart}>
+          <View style={styles.btInfo}>
+            <Text style={styles.btTitle}>2 món trong giỏ hàng</Text>
+            <Text style={styles.btPrice}>{PriceUtils.format(1450000.0)}</Text>
+          </View>
+          <Image
+            style={styles.btImage}
+            source={require('@icons/ic_order.png')}
+          />
+        </Pressable>
+        <OrderCategoryView ref={(ref: any) => (this.categoryRef = ref)} />
       </View>
     );
   }
@@ -237,6 +262,45 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
+  btShowCart: {
+    position: 'absolute',
+    flex: 1,
+    backgroundColor: colors.primary,
+    bottom: 10,
+    left: 16,
+    right: 16,
+    borderRadius: 6,
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: colors.primary,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 6,
+    shadowOpacity: 0.2,
+  },
+  btInfo: {
+    flex: 1,
+  },
+  btTitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: colors.white,
+  },
+  btPrice: {
+    marginTop: 4,
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.white,
+  },
+  btImage: {
+    height: 24,
+    width: 24,
+    tintColor: colors.white,
+  },
+
   item: {
     flex: 1,
     backgroundColor: colors.white,
