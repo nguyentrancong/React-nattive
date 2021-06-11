@@ -1,3 +1,4 @@
+import {colors} from '@utils/Colors';
 import {
   ComponentDidAppearEvent,
   Navigation,
@@ -11,12 +12,15 @@ class ManagerNavigation {
       Navigation.setRoot({
         root: {
           bottomTabs: {
+            id: 'BOTTOM_TABS_LAYOUT',
             children: [
               {
                 stack: {
+                  id: 'HOME_TAB',
                   children: [
                     {
                       component: {
+                        id: 'HOME_SCREEN',
                         name: 'Home',
                         options: {
                           topBar: {
@@ -26,6 +30,15 @@ class ManagerNavigation {
                           },
                           bottomTab: {
                             text: 'Trang Chủ',
+                            icon: require('@icons/ic_home.png'),
+                            iconColor: colors.darkGrey,
+                            textColor: colors.darkGrey,
+                            fontSize: 12,
+                            selectedIconColor: colors.primary,
+                            selectedTextColor: colors.primary,
+                            selectedFontSize: 14,
+                            iconHeight: 24,
+                            iconWidth: 24,
                           },
                         },
                       },
@@ -35,9 +48,11 @@ class ManagerNavigation {
               },
               {
                 stack: {
+                  id: 'ORDER_TAB',
                   children: [
                     {
                       component: {
+                        id: 'ORDER_SCREEN',
                         name: 'Order',
                         options: {
                           topBar: {
@@ -47,6 +62,15 @@ class ManagerNavigation {
                           },
                           bottomTab: {
                             text: 'Đặt Món',
+                            icon: require('@icons/ic_order.png'),
+                            iconColor: colors.darkGrey,
+                            textColor: colors.darkGrey,
+                            fontSize: 12,
+                            selectedIconColor: colors.primary,
+                            selectedTextColor: colors.primary,
+                            selectedFontSize: 14,
+                            iconHeight: 24,
+                            iconWidth: 24,
                           },
                         },
                       },
@@ -56,9 +80,11 @@ class ManagerNavigation {
               },
               {
                 stack: {
+                  id: 'STORE_TAB',
                   children: [
                     {
                       component: {
+                        id: 'STORE_SCREEN',
                         name: 'Shop',
                         options: {
                           topBar: {
@@ -68,6 +94,15 @@ class ManagerNavigation {
                           },
                           bottomTab: {
                             text: 'Cửa Hàng',
+                            icon: require('@icons/ic_store.png'),
+                            iconColor: colors.darkGrey,
+                            textColor: colors.darkGrey,
+                            fontSize: 12,
+                            selectedIconColor: colors.primary,
+                            selectedTextColor: colors.primary,
+                            selectedFontSize: 14,
+                            iconHeight: 24,
+                            iconWidth: 24,
                           },
                         },
                       },
@@ -77,9 +112,11 @@ class ManagerNavigation {
               },
               {
                 stack: {
+                  id: 'ACCOUMULATED_POINT_TAB',
                   children: [
                     {
                       component: {
+                        id: 'ACCOUMULATED_POINT_SCREEN',
                         name: 'AccoumulatePoint',
                         options: {
                           topBar: {
@@ -89,6 +126,15 @@ class ManagerNavigation {
                           },
                           bottomTab: {
                             text: 'Tích Điểm',
+                            icon: require('@icons/ic_card_gift.png'),
+                            iconColor: colors.darkGrey,
+                            textColor: colors.darkGrey,
+                            fontSize: 12,
+                            selectedIconColor: colors.primary,
+                            selectedTextColor: colors.primary,
+                            selectedFontSize: 14,
+                            iconHeight: 24,
+                            iconWidth: 24,
                           },
                         },
                       },
@@ -98,9 +144,11 @@ class ManagerNavigation {
               },
               {
                 stack: {
+                  id: 'OTHER_TAB',
                   children: [
                     {
                       component: {
+                        id: 'OTHER_SCREEN',
                         name: 'Other',
                         options: {
                           topBar: {
@@ -110,6 +158,15 @@ class ManagerNavigation {
                           },
                           bottomTab: {
                             text: 'Khác',
+                            icon: require('@icons/ic_other.png'),
+                            iconColor: colors.darkGrey,
+                            textColor: colors.darkGrey,
+                            fontSize: 12,
+                            selectedIconColor: colors.primary,
+                            selectedTextColor: colors.primary,
+                            selectedFontSize: 14,
+                            iconHeight: 24,
+                            iconWidth: 24,
                           },
                         },
                       },
@@ -242,6 +299,15 @@ class ManagerNavigation {
         name: screenName,
         passProps: passProps,
         options: options,
+      },
+    });
+  };
+
+  // Navigation change bottom tab
+  switchToTab = async (index: number) => {
+    Navigation.mergeOptions('BOTTOM_TABS_LAYOUT', {
+      bottomTabs: {
+        currentTabIndex: 1,
       },
     });
   };

@@ -10,6 +10,10 @@ module.exports = {
             rootPathPrefix: '@images/',
           },
           {
+            rootPathSuffix: './resources/icons',
+            rootPathPrefix: '@icons/',
+          },
+          {
             rootPathSuffix: './src/utils',
             rootPathPrefix: '@utils/',
           },

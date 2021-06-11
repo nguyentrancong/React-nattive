@@ -14,13 +14,13 @@ interface Props {
   onPress?: () => void;
   viewStyle?: ViewStyle;
   imageStyle?: ImageStyle;
-  textStyle?: TextStyle;
+  titleStyle?: TextStyle;
   image?: number;
   uri?: string;
   title?: string;
 }
 const ImageTitleRowButtonView: React.FC<Props> = React.memo(
-  ({onPress, viewStyle, imageStyle, textStyle, image, uri, title}) => {
+  ({onPress, viewStyle, imageStyle, titleStyle, image, uri, title}) => {
     return (
       <Pressable onPress={onPress} style={[styles.content, viewStyle]}>
         <Image
@@ -30,7 +30,7 @@ const ImageTitleRowButtonView: React.FC<Props> = React.memo(
             require('@images/common/ic_close.png')
           }
         />
-        <Text style={[styles.text, textStyle]}>{title}</Text>
+        <Text style={[styles.text, titleStyle]}>{title}</Text>
       </Pressable>
     );
   },
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 16,
+    paddingVertical: 8,
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   text: {
+    flex: 1,
     marginLeft: 8,
     fontSize: 14,
     fontWeight: '400',

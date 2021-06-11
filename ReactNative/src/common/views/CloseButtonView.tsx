@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 35,
     width: 35,
+    borderRadius: 22,
+    backgroundColor: 'rgba(230,230,230,0.5)',
   },
   btClick: {
     flex: 1,

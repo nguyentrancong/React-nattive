@@ -15,8 +15,8 @@ import {AddressType, Address} from '@models/Address';
 import NavigationManager from '@managers/NavigationManager';
 import {colors} from '@utils/Colors';
 import {dimensions} from '@utils/Constant';
-import ShopItemView from './shopComponents/ShopItemView';
-import ShopTitleSectionView from './shopComponents/ShopTitleSectionView';
+import ShopItemView from './storeComponents/StoreItemView';
+import ShopTitleSectionView from './storeComponents/StoreTitleSectionView';
 
 const DATA: Address[] = [
   {
@@ -202,7 +202,6 @@ class ShopScreen extends NavigationComponent<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#f2f2f2',
     backgroundColor: colors.white,
   },
   listView: {
