@@ -186,25 +186,25 @@ class OrderScreen extends NavigationComponent<Props> {
       case ItemType.HEADER:
         return (
           <View style={styles.headerItem}>
-            <Text style={styles.titleHeader}>{data.title}</Text>
+            <Text style={styles.titleHeader}>{data?.title}</Text>
           </View>
         );
       default:
         return (
           <View style={styles.item}>
             <View style={styles.infoItem}>
-              <Text style={styles.titleItem}>{data.name}</Text>
+              <Text style={styles.titleItem}>{data?.name}</Text>
               <Text style={styles.descItem} numberOfLines={2}>
-                {data.desc?.content}
+                {data?.desc?.content}
               </Text>
               <Text style={styles.priceItem}>
-                {PriceUtils.format(data.price?.price || 0)}
+                {PriceUtils.format(data?.price?.price || 0)}
               </Text>
             </View>
             <Image
               style={styles.imageItem}
               source={{
-                uri: 'https://previews.123rf.com/images/ketmut/ketmut1903/ketmut190300082/121087489-a-cup-of-black-coffee-isometric-view-realistic-vector-3d-model-americano-in-white-cup-isolated-on-wh.jpg',
+                uri: 'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
               }}
             />
           </View>

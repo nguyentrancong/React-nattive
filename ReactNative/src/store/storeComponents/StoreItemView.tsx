@@ -6,7 +6,7 @@ import {colors} from '@utils/Colors';
 interface Props {
   address: Address;
 }
-const ShopItemView: React.FC<Props> = React.memo(({address}) => {
+const StoreItemView: React.FC<Props> = React.memo(({address}) => {
   return (
     <View style={styles.item}>
       <Image
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopItemView;
+export default StoreItemView;

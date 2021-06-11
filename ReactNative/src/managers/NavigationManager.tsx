@@ -85,7 +85,7 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'STORE_SCREEN',
-                        name: 'Shop',
+                        name: 'Store',
                         options: {
                           topBar: {
                             title: {

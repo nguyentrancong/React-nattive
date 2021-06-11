@@ -5,7 +5,7 @@ import {colors} from '@utils/Colors';
 interface Props {
   data: any;
 }
-const ShopTitleSectionView: React.FC<Props> = React.memo(({data}) => {
+const StoreTitleSectionView: React.FC<Props> = React.memo(({data}) => {
   return (
     <View style={styles.section}>
       <Text style={styles.title}>{data.title}</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopTitleSectionView;
+export default StoreTitleSectionView;

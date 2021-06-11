@@ -14,9 +14,9 @@ import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {AddressType, Address} from '@models/Address';
 import NavigationManager from '@managers/NavigationManager';
 import {colors} from '@utils/Colors';
-import {dimensions} from '@utils/Constant';
-import ShopItemView from './storeComponents/StoreItemView';
-import ShopTitleSectionView from './storeComponents/StoreTitleSectionView';
+import {dimensions, SOTRE_DETAIL_SCREEN} from '@utils/Constant';
+import StoreItemView from './storeComponents/StoreItemView';
+import StoreTitleSectionView from './storeComponents/StoreTitleSectionView';
 
 const DATA: Address[] = [
   {
@@ -121,7 +121,7 @@ const DATA: Address[] = [
 ];
 
 interface Props extends NavigationComponentProps {}
-class ShopScreen extends NavigationComponent<Props> {
+class StoreScreen extends NavigationComponent<Props> {
   private _dataProvider: DataProvider;
   private _layoutProvider: LayoutProvider;
 
@@ -162,23 +162,23 @@ class ShopScreen extends NavigationComponent<Props> {
     const params = {
       data: data,
     };
-    NavigationManager.showModal('ShopDetail', params);
+    NavigationManager.showModal(SOTRE_DETAIL_SCREEN, params);
   };
 
   _renderRow = (type: any, data: Address) => {
     switch (type) {
       case AddressType.HEADER:
-        return <ShopTitleSectionView data={data} />;
+        return <StoreTitleSectionView data={data} />;
       case AddressType.ROW:
         return (
           <Pressable
             onPress={() => this._didSeletedRowAt(data)}
             style={{flex: 1, backgroundColor: colors.white}}>
-            <ShopItemView address={data} />
+            <StoreItemView address={data} />
           </Pressable>
         );
       default:
-        return <ShopItemView address={data} />;
+        return <StoreItemView address={data} />;
     }
   };
 
@@ -209,4 +209,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopScreen;
+export default StoreScreen;

@@ -5,14 +5,35 @@ import CategoryScreen from './src/order/OrderScreen';
 import AccoumulatePointScreen from './src/accoumulatePoint/AccoumulatePointScreen';
 import OtherScreen from './src/other/OtherScreen';
 import StoreDetailScreen from './src/store/StoreDetailScreen';
+import CartScreen from './src/order/CartScreen';
+import {
+  ACCOUMULATED_POINT_SCREEN,
+  CART_SCREEN,
+  CATEGORY_SCREEN,
+  HOME_SCREEN,
+  ORDER_SCREEN,
+  OTHER_SCREEN,
+  SOTRE_DETAIL_SCREEN,
+  STORE_SCREEN,
+} from '@utils/Constant';
 
-Navigation.registerComponent('Home', () => HomeScreen);
+//Home
+Navigation.registerComponent(HOME_SCREEN, () => HomeScreen);
 
-Navigation.registerComponent('Store', () => StoreScreen);
-Navigation.registerComponent('StoreDetail', () => StoreDetailScreen);
+//Store
+Navigation.registerComponent(STORE_SCREEN, () => StoreScreen);
+Navigation.registerComponent(SOTRE_DETAIL_SCREEN, () => StoreDetailScreen);
 
-Navigation.registerComponent('Order', () => CategoryScreen);
+//Order
+Navigation.registerComponent(ORDER_SCREEN, () => CategoryScreen);
+Navigation.registerComponent(CATEGORY_SCREEN, () => CategoryScreen);
+Navigation.registerComponent(CART_SCREEN, () => CartScreen);
 
-Navigation.registerComponent('AccoumulatePoint', () => AccoumulatePointScreen);
+//AccoumulatePoint
+Navigation.registerComponent(
+  ACCOUMULATED_POINT_SCREEN,
+  () => AccoumulatePointScreen,
+);
 
-Navigation.registerComponent('Other', () => OtherScreen);
+//Other
+Navigation.registerComponent(OTHER_SCREEN, () => OtherScreen);

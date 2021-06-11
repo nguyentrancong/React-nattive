@@ -17,7 +17,7 @@ import NavigationManager from '@managers/NavigationManager';
 interface Props extends NavigationComponentProps {
   data: Address;
 }
-class ShopDetailScreen extends NavigationComponent<Props> {
+class StoreDetailScreen extends NavigationComponent<Props> {
   constructor(props: Props) {
     super(props);
 
@@ -64,7 +64,7 @@ class ShopDetailScreen extends NavigationComponent<Props> {
           />
 
           <View style={styles.info}>
-            <Text style={styles.shopName}>F99</Text>
+            <Text style={styles.nameStore}>F99</Text>
             <Text style={styles.address}>{title}</Text>
             <Text style={styles.time}>Giờ mở cửa: 07:00 - 22:00</Text>
           </View>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: colors.white,
   },
-  shopName: {
+  nameStore: {
     height: 16,
     fontSize: 12,
     marginTop: 8,
@@ -170,4 +170,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopDetailScreen;
+export default StoreDetailScreen;
