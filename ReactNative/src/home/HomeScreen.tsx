@@ -5,7 +5,7 @@ import {
   NavigationComponentProps,
 } from 'react-native-navigation';
 import {RecyclerListView, DataProvider, LayoutProvider} from 'recyclerlistview';
-import {dimensions} from '../utils/Constant';
+import {dimensions} from '@utils/Constant';
 
 const DATA = [1, 2, 3, 4, 5, 15, 6, 7, 8, 9];
 

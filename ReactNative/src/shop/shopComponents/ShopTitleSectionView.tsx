@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../utils/Colors';
+import {colors} from '@utils/Colors';
 
 interface Props {
   data: any;

@@ -4,8 +4,7 @@ import {
   NavigationComponent,
   NavigationComponentProps,
 } from 'react-native-navigation';
-import RowTitleDescriptionView from '../common/views/RowTitleDescriptionView';
-import {colors} from '../utils/Colors';
+import RowTitleDescriptionView from '@common/views/RowTitleDescriptionView';
 
 enum AccountItemType {
   NORMAL = 'NORMAL',

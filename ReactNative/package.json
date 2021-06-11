@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.170",
+    "babel-plugin-root-import": "^6.6.0",
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "react": "17.0.1",

@@ -5,10 +5,10 @@ import {
   NavigationComponentProps,
 } from 'react-native-navigation';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {PDescriptionType, Product} from '../common/models/Product';
-import {colors} from '../utils/Colors';
-import {dimensions} from '../utils/Constant';
-import PriceUtils from '../utils/PriceUtils';
+import {PDescriptionType, Product} from '@common/models/Product';
+import {colors} from '@utils/Colors';
+import {dimensions} from '@utils/Constant';
+import PriceUtils from '@utils/PriceUtils';
 
 enum ItemType {
   HEADER = 'HEADER',

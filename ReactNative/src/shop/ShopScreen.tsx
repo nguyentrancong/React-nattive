@@ -11,10 +11,10 @@ import {
   NavigationComponentProps,
 } from 'react-native-navigation';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {AddressType, Address} from '../common/models/Address';
-import NavigationManager from '../managers/NavigationManager';
-import {colors} from '../utils/Colors';
-import {dimensions} from '../utils/Constant';
+import {AddressType, Address} from '@common/models/Address';
+import NavigationManager from '@managers/NavigationManager';
+import {colors} from '@utils/Colors';
+import {dimensions} from '@utils/Constant';
 import ShopItemView from './shopComponents/ShopItemView';
 import ShopTitleSectionView from './shopComponents/ShopTitleSectionView';
 
@@ -159,7 +159,10 @@ class ShopScreen extends NavigationComponent<Props> {
   _didSeletedRowAt = (data: any) => {
     //todo seleted address
     console.log('=====>>>> _didSeletedRowAt', data);
-    NavigationManager.showModal('ShopDetail');
+    const params = {
+      data: data,
+    };
+    NavigationManager.showModal('ShopDetail', params);
   };
 
   _renderRow = (type: any, data: Address) => {

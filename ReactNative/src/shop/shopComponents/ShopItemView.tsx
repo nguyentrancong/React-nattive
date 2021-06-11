@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Address} from '../../common/models/Address';
-import {colors} from '../../utils/Colors';
+import {Address} from '@common/models/Address';
+import {colors} from '@utils/Colors';
 
 interface Props {
   address: Address;
@@ -11,7 +11,7 @@ const ShopItemView: React.FC<Props> = React.memo(({address}) => {
     <View style={styles.item}>
       <Image
         style={styles.image}
-        source={require('../../../resources/images/flashSale/ic_flash_sale.png')}
+        source={require('@images/flashSale/ic_flash_sale.png')}
       />
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={1}>
