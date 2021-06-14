@@ -16,7 +16,11 @@ import {
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {PDescriptionType, Product} from '@models/Product';
 import {colors} from '@utils/Colors';
-import {ORDER_CONFIRMATION_SCREEN, dimensions} from '@utils/Constant';
+import {
+  ORDER_CONFIRMATION_SCREEN,
+  dimensions,
+  PRODUCT_DETAIL_SCREEN,
+} from '@utils/Constant';
 import PriceUtils from '@utils/PriceUtils';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import OrderCategoryView from './orderComponents/OrderCategoryView';
@@ -199,19 +203,26 @@ class OrderScreen extends NavigationComponent<Props, State> {
 
   componentDidMount() {
     this.navigationEventListener = Navigation.events().bindComponent(this);
-    BackHandler.addEventListener('hardwareBackPress', this.handleBack);
+    BackHandler.addEventListener('hardwareBackPress', this._handleBack);
   }
 
   componentWillUnmount() {
     if (this.navigationEventListener) {
       this.navigationEventListener.remove();
     }
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
+    BackHandler.removeEventListener('hardwareBackPress', this._handleBack);
   }
 
-  handleBack = () => {
+  _handleBack = () => {
     Navigation.dismissModal(this.props.componentId);
     return true;
+  };
+
+  _handleShowProductDetail = () => {
+    const params = {
+      id: '1212',
+    };
+    NavigationManager.showModal(PRODUCT_DETAIL_SCREEN, params);
   };
 
   _renderRow = (type: any, data: any[]) => {
@@ -220,7 +231,9 @@ class OrderScreen extends NavigationComponent<Props, State> {
         return <TitleDescriptionButtonView title={data?.title} />;
       default:
         return (
-          <View style={styles.item}>
+          <Pressable
+            style={styles.item}
+            onPress={this._handleShowProductDetail}>
             <View style={styles.infoItem}>
               <Text style={styles.titleItem}>{data?.name}</Text>
               <Text style={styles.descItem} numberOfLines={2}>
@@ -236,7 +249,7 @@ class OrderScreen extends NavigationComponent<Props, State> {
                 uri: 'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
               }}
             />
-          </View>
+          </Pressable>
         );
     }
   };

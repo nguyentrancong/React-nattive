@@ -18,4 +18,5 @@ export const colors = {
   inactive: '#808080',
   background: 'rgba(242, 242, 242, 0.5)',
   purple: '#5631BF',
+  icon: '#50AA03',
 };

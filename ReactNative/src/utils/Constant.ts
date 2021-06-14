@@ -19,6 +19,9 @@ export const ORDER_SCREEN = 'Order';
 export const ORDER_CONFIRMATION_SCREEN = 'OrderConfirmation';
 export const ORDER_CATEGORY_SCREEN = 'OrderCategory';
 
+//Product
+export const PRODUCT_DETAIL_SCREEN = 'ProductDetail';
+
 //AccoumulatePoint
 export const ACCOUMULATED_POINT_SCREEN = 'AccoumulatePoint';
 

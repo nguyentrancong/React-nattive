@@ -8,6 +8,7 @@ import {
   SOTRE_DETAIL_SCREEN,
   SOTRE_LIST_SCREEN,
   STORE_SCREEN,
+  PRODUCT_DETAIL_SCREEN,
 } from '@utils/Constant';
 import {Navigation} from 'react-native-navigation';
 import HomeScreen from './src/home/HomeScreen';
@@ -19,6 +20,7 @@ import OrderConfirmationScreen from './src/order/OrderConfirmationScreen';
 import StoreListScreen from './src/store/StoreListScreen';
 import OrderCategoryScreen from './src/order/OrderCategoryScreen';
 import OrderScreen from './src/order/OrderScreen';
+import ProductDetailScreen from './src/order/ProductDetailScreen';
 
 //Home
 Navigation.registerComponent(HOME_SCREEN, () => HomeScreen);
@@ -35,6 +37,9 @@ Navigation.registerComponent(
   ORDER_CONFIRMATION_SCREEN,
   () => OrderConfirmationScreen,
 );
+
+//Product
+Navigation.registerComponent(PRODUCT_DETAIL_SCREEN, () => ProductDetailScreen);
 
 //AccoumulatePoint
 Navigation.registerComponent(
