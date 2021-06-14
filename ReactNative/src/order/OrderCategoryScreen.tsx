@@ -1,5 +1,5 @@
 import {colors} from '@utils/Colors';
-import React, {Component} from 'react';
+import React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {
   Navigation,
@@ -10,7 +10,7 @@ import {
 interface Props extends NavigationComponentProps {
   selectedItem: (value?: any) => void;
 }
-class CategoryScreen extends NavigationComponent<Props> {
+class OrderCategoryScreen extends NavigationComponent<Props> {
   _handleClose = () => {
     Navigation.dismissModal(this.props.componentId);
   };
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryScreen;
+export default OrderCategoryScreen;

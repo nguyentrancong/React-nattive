@@ -9,6 +9,10 @@ import {
   ViewStyle,
 } from 'react-native';
 
+//---------------
+// Title
+// Subtitle
+//---------------
 interface Props {
   viewStyle?: ViewStyle;
   titleStyle?: TextStyle;

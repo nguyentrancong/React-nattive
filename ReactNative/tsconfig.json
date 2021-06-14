@@ -44,7 +44,7 @@
       // "@redux/*": ["src/redux/*"],
       // "@navigation/*": ["src/navigation/*"],
       "@utils/*": ["src/utils/*"],
-      "@common/*": ["src/common/*"],
+      // "@common/*": ["src/common/*"],
       "@models/*": ["src/common/models/*"],
       "@views/*": ["src/common/views/*"],
       "@managers/*": ["src/managers/*"],

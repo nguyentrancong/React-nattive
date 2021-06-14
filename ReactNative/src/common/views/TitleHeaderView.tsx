@@ -2,7 +2,10 @@ import {colors} from '@utils/Colors';
 import React from 'react';
 import {StyleSheet, Text, TextStyle, View, ViewStyle} from 'react-native';
 import CloseButtonView from './CloseButtonView';
-
+// Header top
+//---------------
+// Title | button
+//---------------
 interface Props {
   viewStyle?: ViewStyle;
   onPressClose?: () => void;

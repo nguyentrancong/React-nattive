@@ -16,8 +16,8 @@ export const SOTRE_LIST_SCREEN = 'StoreList';
 
 //Order
 export const ORDER_SCREEN = 'Order';
-export const CATEGORY_SCREEN = 'Category';
-export const CART_SCREEN = 'Cart';
+export const ORDER_CONFIRMATION_SCREEN = 'OrderConfirmation';
+export const ORDER_CATEGORY_SCREEN = 'OrderCategory';
 
 //AccoumulatePoint
 export const ACCOUMULATED_POINT_SCREEN = 'AccoumulatePoint';

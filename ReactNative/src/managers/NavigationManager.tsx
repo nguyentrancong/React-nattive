@@ -1,5 +1,12 @@
 import {colors} from '@utils/Colors';
 import {
+  ACCOUMULATED_POINT_SCREEN,
+  HOME_SCREEN,
+  ORDER_SCREEN,
+  OTHER_SCREEN,
+  STORE_SCREEN,
+} from '@utils/Constant';
+import {
   ComponentDidAppearEvent,
   Navigation,
   Options,
@@ -21,15 +28,15 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'HOME_SCREEN',
-                        name: 'Home',
+                        name: HOME_SCREEN,
                         options: {
                           topBar: {
                             title: {
-                              text: 'Home',
+                              text: 'Thoáng Quê',
                             },
                           },
                           bottomTab: {
-                            text: 'Trang Chủ',
+                            text: 'Thoáng Quê',
                             icon: require('@icons/ic_home.png'),
                             iconColor: colors.darkGrey,
                             textColor: colors.darkGrey,
@@ -37,8 +44,6 @@ class ManagerNavigation {
                             selectedIconColor: colors.primary,
                             selectedTextColor: colors.primary,
                             selectedFontSize: 14,
-                            iconHeight: 24,
-                            iconWidth: 24,
                           },
                         },
                       },
@@ -53,7 +58,7 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'ORDER_SCREEN',
-                        name: 'Order',
+                        name: ORDER_SCREEN,
                         options: {
                           topBar: {
                             title: {
@@ -69,8 +74,6 @@ class ManagerNavigation {
                             selectedIconColor: colors.primary,
                             selectedTextColor: colors.primary,
                             selectedFontSize: 14,
-                            iconHeight: 24,
-                            iconWidth: 24,
                           },
                         },
                       },
@@ -85,7 +88,7 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'STORE_SCREEN',
-                        name: 'Store',
+                        name: STORE_SCREEN,
                         options: {
                           topBar: {
                             title: {
@@ -101,8 +104,6 @@ class ManagerNavigation {
                             selectedIconColor: colors.primary,
                             selectedTextColor: colors.primary,
                             selectedFontSize: 14,
-                            iconHeight: 24,
-                            iconWidth: 24,
                           },
                         },
                       },
@@ -117,7 +118,7 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'ACCOUMULATED_POINT_SCREEN',
-                        name: 'AccoumulatePoint',
+                        name: ACCOUMULATED_POINT_SCREEN,
                         options: {
                           topBar: {
                             title: {
@@ -133,8 +134,6 @@ class ManagerNavigation {
                             selectedIconColor: colors.primary,
                             selectedTextColor: colors.primary,
                             selectedFontSize: 14,
-                            iconHeight: 24,
-                            iconWidth: 24,
                           },
                         },
                       },
@@ -149,7 +148,7 @@ class ManagerNavigation {
                     {
                       component: {
                         id: 'OTHER_SCREEN',
-                        name: 'Other',
+                        name: OTHER_SCREEN,
                         options: {
                           topBar: {
                             title: {
@@ -165,8 +164,6 @@ class ManagerNavigation {
                             selectedIconColor: colors.primary,
                             selectedTextColor: colors.primary,
                             selectedFontSize: 14,
-                            iconHeight: 24,
-                            iconWidth: 24,
                           },
                         },
                       },

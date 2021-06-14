@@ -20,7 +20,7 @@ const ADDRESS: Address = {
   image: undefined,
   location: undefined,
 };
-const CartMethodView: React.FC<Props> = React.memo(
+const OrderConfirmationMethodView: React.FC<Props> = React.memo(
   ({method, onChangedMethod}) => {
     const {title} = method || {};
     const [address, setAddress] = useState(ADDRESS);
@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     height: 30,
     width: 30,
+    tintColor: colors.primary,
   },
 });
 
-export default CartMethodView;
+export default OrderConfirmationMethodView;

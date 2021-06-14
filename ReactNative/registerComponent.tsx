@@ -1,8 +1,8 @@
 import {
   ACCOUMULATED_POINT_SCREEN,
-  CART_SCREEN,
-  CATEGORY_SCREEN,
   HOME_SCREEN,
+  ORDER_CATEGORY_SCREEN,
+  ORDER_CONFIRMATION_SCREEN,
   ORDER_SCREEN,
   OTHER_SCREEN,
   SOTRE_DETAIL_SCREEN,
@@ -12,12 +12,13 @@ import {
 import {Navigation} from 'react-native-navigation';
 import HomeScreen from './src/home/HomeScreen';
 import StoreScreen from './src/store/StoreScreen';
-import CategoryScreen from './src/order/OrderScreen';
 import AccoumulatePointScreen from './src/accoumulatePoint/AccoumulatePointScreen';
 import OtherScreen from './src/other/OtherScreen';
 import StoreDetailScreen from './src/store/StoreDetailScreen';
-import CartScreen from './src/order/CartScreen';
+import OrderConfirmationScreen from './src/order/OrderConfirmationScreen';
 import StoreListScreen from './src/store/StoreListScreen';
+import OrderCategoryScreen from './src/order/OrderCategoryScreen';
+import OrderScreen from './src/order/OrderScreen';
 
 //Home
 Navigation.registerComponent(HOME_SCREEN, () => HomeScreen);
@@ -28,9 +29,12 @@ Navigation.registerComponent(SOTRE_DETAIL_SCREEN, () => StoreDetailScreen);
 Navigation.registerComponent(SOTRE_LIST_SCREEN, () => StoreListScreen);
 
 //Order
-Navigation.registerComponent(ORDER_SCREEN, () => CategoryScreen);
-Navigation.registerComponent(CATEGORY_SCREEN, () => CategoryScreen);
-Navigation.registerComponent(CART_SCREEN, () => CartScreen);
+Navigation.registerComponent(ORDER_SCREEN, () => OrderScreen);
+Navigation.registerComponent(ORDER_CATEGORY_SCREEN, () => OrderCategoryScreen);
+Navigation.registerComponent(
+  ORDER_CONFIRMATION_SCREEN,
+  () => OrderConfirmationScreen,
+);
 
 //AccoumulatePoint
 Navigation.registerComponent(

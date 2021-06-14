@@ -10,6 +10,10 @@ import {
 } from 'react-native';
 import {colors} from '@utils/Colors';
 
+//---------------
+// image | title
+//---------------
+
 interface Props {
   onPress?: () => void;
   viewStyle?: ViewStyle;
@@ -19,6 +23,7 @@ interface Props {
   uri?: string;
   title?: string;
 }
+
 const ImageTitleRowButtonView: React.FC<Props> = React.memo(
   ({onPress, viewStyle, imageStyle, titleStyle, image, uri, title}) => {
     return (

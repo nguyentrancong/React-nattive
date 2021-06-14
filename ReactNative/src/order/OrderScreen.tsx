@@ -1,18 +1,26 @@
 import React from 'react';
-import {Text, StyleSheet, View, Image, Pressable} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Pressable,
+  BackHandler,
+} from 'react-native';
 import {
   NavigationComponent,
   NavigationComponentProps,
+  EventSubscription,
+  Navigation,
 } from 'react-native-navigation';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {PDescriptionType, Product} from '@models/Product';
 import {colors} from '@utils/Colors';
-import {CART_SCREEN, dimensions} from '@utils/Constant';
+import {ORDER_CONFIRMATION_SCREEN, dimensions} from '@utils/Constant';
 import PriceUtils from '@utils/PriceUtils';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import OrderCategoryView from './orderComponents/OrderCategoryView';
 import NavigationManager from '@managers/NavigationManager';
-import Modal from 'react-native-modal';
 
 enum ItemType {
   HEADER = 'HEADER',
@@ -153,6 +161,7 @@ const DATA: any[] = [
 interface Props extends NavigationComponentProps {}
 interface State {}
 class OrderScreen extends NavigationComponent<Props, State> {
+  private navigationEventListener?: EventSubscription;
   private _dataProvider: DataProvider;
   private _layoutProvider: LayoutProvider;
   categoryRef: any;
@@ -188,6 +197,23 @@ class OrderScreen extends NavigationComponent<Props, State> {
     );
   }
 
+  componentDidMount() {
+    this.navigationEventListener = Navigation.events().bindComponent(this);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBack);
+  }
+
+  componentWillUnmount() {
+    if (this.navigationEventListener) {
+      this.navigationEventListener.remove();
+    }
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
+  }
+
+  handleBack = () => {
+    Navigation.dismissModal(this.props.componentId);
+    return true;
+  };
+
   _renderRow = (type: any, data: any[]) => {
     switch (type) {
       case ItemType.HEADER:
@@ -216,7 +242,7 @@ class OrderScreen extends NavigationComponent<Props, State> {
   };
 
   _handleCartVisible = () => {
-    NavigationManager.showModal(CART_SCREEN);
+    NavigationManager.showModal(ORDER_CONFIRMATION_SCREEN);
   };
 
   _handleCategoryVisible = () => {

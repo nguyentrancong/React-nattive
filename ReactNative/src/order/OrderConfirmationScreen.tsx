@@ -8,10 +8,10 @@ import {
   NavigationComponent,
   NavigationComponentProps,
 } from 'react-native-navigation';
-import CartMethodView from './cartComponents/CartMethodView';
-import CartOrderedView from './cartComponents/CartOrderedView';
-import CartPayView from './cartComponents/CartPayView';
-import CartTotalView from './cartComponents/CartTotalView';
+import OrderConfirmationMethodView from './orderConfirmationComponents/OrderConfirmationMethodView';
+import OrderConfirmationOrderedView from './orderConfirmationComponents/OrderConfirmationOrderedView';
+import OrderConfirmationPayView from './orderConfirmationComponents/OrderConfirmationPayView';
+import OrderConfirmationTotalView from './orderConfirmationComponents/OrderConfirmationTotalView';
 import {isIphoneX, getBottomSpace} from 'react-native-iphone-x-helper';
 
 const Methods = [
@@ -23,7 +23,7 @@ interface Props extends NavigationComponentProps {}
 interface State {
   method: any;
 }
-class CartScreen extends NavigationComponent<Props, State> {
+class OrderConfirmationScreen extends NavigationComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -56,10 +56,10 @@ class CartScreen extends NavigationComponent<Props, State> {
           viewStyle={{paddingVertical: 12}}
         />
         <ScrollView style={styles.scrollView}>
-          <CartMethodView method={method} />
-          <CartOrderedView />
-          <CartTotalView />
-          <CartPayView />
+          <OrderConfirmationMethodView method={method} />
+          <OrderConfirmationOrderedView />
+          <OrderConfirmationTotalView />
+          <OrderConfirmationPayView />
           <Pressable
             style={styles.clearButton}
             onPress={this._handleClearOrder}>
@@ -141,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CartScreen;
+export default OrderConfirmationScreen;
