@@ -25,6 +25,9 @@ import PriceUtils from '@utils/PriceUtils';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import OrderCategoryView from './orderComponents/OrderCategoryView';
 import NavigationManager from '@managers/NavigationManager';
+import {connect} from 'react-redux';
+import {updateCart} from '@redux/actions/Cart';
+import {sumBy} from 'lodash';
 
 enum ItemType {
   HEADER = 'HEADER',
@@ -162,7 +165,9 @@ const DATA: any[] = [
   },
 ];
 
-interface Props extends NavigationComponentProps {}
+interface Props extends NavigationComponentProps {
+  products?: any;
+}
 interface State {}
 class OrderScreen extends NavigationComponent<Props, State> {
   private navigationEventListener?: EventSubscription;
@@ -263,6 +268,13 @@ class OrderScreen extends NavigationComponent<Props, State> {
   };
 
   render() {
+    // const totalProduct = sumBy(cart, (product: any) => {
+    //   return product.amount;
+    // });
+    const {products} = this.props || {};
+    const numberOfProduct = sumBy(products, (product: any) => {
+      return product.amount;
+    });
     return (
       <View style={styles.container}>
         <RecyclerListView
@@ -279,7 +291,9 @@ class OrderScreen extends NavigationComponent<Props, State> {
         />
         <Pressable onPress={this._handleCartVisible} style={styles.btShowCart}>
           <View style={styles.btInfo}>
-            <Text style={styles.btTitle}>2 món trong giỏ hàng</Text>
+            <Text style={styles.btTitle}>
+              {numberOfProduct} món trong giỏ hàng
+            </Text>
             <Text style={styles.btPrice}>{PriceUtils.format(1450000.0)}</Text>
           </View>
           <Image
@@ -396,4 +410,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderScreen;
+const mapStateToProps = (state: any) => {
+  return {
+    products: state.cart.products,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    updateCart: (products: any[]) => dispatch(updateCart(products)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(OrderScreen);

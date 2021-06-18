@@ -18,6 +18,10 @@ module.exports = {
             rootPathPrefix: '@utils/',
           },
           {
+            rootPathSuffix: './src/redux',
+            rootPathPrefix: '@redux/',
+          },
+          {
             rootPathSuffix: './src/managers',
             rootPathPrefix: '@managers/',
           },

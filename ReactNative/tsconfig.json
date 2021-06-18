@@ -41,7 +41,7 @@
     "paths": {
       "@images/*": ["resources/images/*"],
       "@icons/*": ["resources/icons/*"],
-      // "@redux/*": ["src/redux/*"],
+      "@redux/*": ["src/redux/*"],
       // "@navigation/*": ["src/navigation/*"],
       "@utils/*": ["src/utils/*"],
       // "@common/*": ["src/common/*"],
