@@ -12,14 +12,21 @@ import OrderConfirmationMethodView from './orderConfirmationComponents/OrderConf
 import OrderConfirmationOrderedView from './orderConfirmationComponents/OrderConfirmationOrderedView';
 import OrderConfirmationPayView from './orderConfirmationComponents/OrderConfirmationPayView';
 import OrderConfirmationTotalView from './orderConfirmationComponents/OrderConfirmationTotalView';
-import {isIphoneX, getBottomSpace} from 'react-native-iphone-x-helper';
+import {isIphoneX} from 'react-native-iphone-x-helper';
+import {connect} from 'react-redux';
+import {updateCart} from '@redux/actions/Cart';
+import CartManager from '@managers/CartManager';
+import {sumBy} from 'lodash';
 
 const Methods = [
   {id: 0, title: 'Tự đến lấy hàng'},
   {id: 1, title: 'Giao hàng tận nơi'},
 ];
 
-interface Props extends NavigationComponentProps {}
+interface Props extends NavigationComponentProps {
+  updateCart: (products: any[]) => void;
+  products: any[];
+}
 interface State {
   method: any;
 }
@@ -37,7 +44,7 @@ class OrderConfirmationScreen extends NavigationComponent<Props, State> {
   };
 
   _handleClearOrder = () => {
-    //todo handle clear ordered
+    this.props.updateCart([]);
     Navigation.dismissModal(this.props.componentId);
   };
 
@@ -48,17 +55,20 @@ class OrderConfirmationScreen extends NavigationComponent<Props, State> {
 
   render() {
     const {method} = this.state || {};
+    const {products} = this.props || {};
+    const totalOfProudct = sumBy(products, item => item.amount);
+    const totalPrice = sumBy(products, item => item.amount * item.price.price);
     return (
       <View style={styles.view}>
         <TitleHeaderView
           onPressClose={this._handleClose}
           title="Xác nhận đơn hàng"
-          viewStyle={{paddingVertical: 12}}
+          viewStyle={styles.headerView}
         />
         <ScrollView style={styles.scrollView}>
           <OrderConfirmationMethodView method={method} />
-          <OrderConfirmationOrderedView />
-          <OrderConfirmationTotalView />
+          <OrderConfirmationOrderedView products={products} />
+          <OrderConfirmationTotalView products={products} />
           <OrderConfirmationPayView />
           <Pressable
             style={styles.clearButton}
@@ -68,9 +78,11 @@ class OrderConfirmationScreen extends NavigationComponent<Props, State> {
         </ScrollView>
         <Pressable style={styles.checkOutButton} onPress={this._handleChekcOut}>
           <View style={styles.checkOutInfo}>
-            <Text style={styles.titleCheckOutButton}>Tự đến lấy - 13 món</Text>
+            <Text style={styles.titleCheckOutButton}>
+              Tự đến lấy - {totalOfProudct} món
+            </Text>
             <Text style={styles.priceCheckOutButton}>
-              {PriceUtils.format(1242000.0)}
+              {PriceUtils.format(totalPrice)}
             </Text>
           </View>
           <View style={styles.viewCheckOut}>
@@ -87,6 +99,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  headerView: {
+    paddingVertical: 12,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 6,
+    shadowOpacity: 0.2,
+    borderBottomColor: colors.background,
+    borderBottomWidth: 1,
+  },
   scrollView: {
     flex: 1,
   },
@@ -96,6 +120,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     justifyContent: 'center',
     backgroundColor: colors.white,
+    marginBottom: 16,
   },
   textClearButton: {
     fontSize: 14,
@@ -141,4 +166,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderConfirmationScreen;
+const mapStateToProps = (state: any) => {
+  return {
+    products: state.cart.products,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    updateCart: (products: any[]) => dispatch(updateCart(products)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(OrderConfirmationScreen);

@@ -202,7 +202,7 @@ class ManagerNavigation {
   _setComponentId = (event: ComponentDidAppearEvent) => {
     if (event.componentId !== this._component?.componentId) {
       this._component = event;
-      console.log('==>> _setComponent', event);
+      // console.log('==>> _setComponent', event);
     }
   };
 

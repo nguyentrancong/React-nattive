@@ -12,23 +12,25 @@ class CartManager {
     this._store = store;
   };
 
-  addToCart = (products: any, product: any) => {
+  addToCart = (products: any[], product: any) => {
     const index = findIndex(
       products,
-      (product: any) => product.id == product.id,
+      (item: any) =>
+        item.id === product.id &&
+        item?.note === product?.note &&
+        item?.options === product?.options,
     );
+    const _products = cloneDeep(products);
     if (index === -1) {
-      const _products = [[...products, {...product, amount: 1}]];
-      return _products;
-      // this._store?.dispatch(updateCart(_products));
+      const _newProducts = [..._products, {...product}];
+      return _newProducts;
     } else {
-      const newProducts = cloneDeep(products);
-      newProducts[index] = {
-        ...newProducts[index],
-        amount: newProducts[index].amount + product.amount || 1,
+      const _product = {
+        ..._products[index],
+        amount: _products[index].amount + product.amount,
       };
-      return newProducts;
-      // this._store?.dispatch(updateCart(newProducts));
+      _products[index] = _product;
+      return _products;
     }
   };
 }

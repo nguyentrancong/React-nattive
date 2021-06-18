@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   line: {
     paddingHorizontal: 16,
     marginTop: 12,
-    backgroundColor: colors.background,
   },
   description: {
     marginTop: 16,

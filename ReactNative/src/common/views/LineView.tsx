@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: colors.line,
+    backgroundColor: colors.background,
   },
 });
 

@@ -26,35 +26,17 @@ import CartManager from '@managers/CartManager';
 import Toast from 'react-native-easy-toast';
 import LineView from '@views/LineView';
 import RadioButtonView from '@views/RadioButtonView';
+import {isIphoneX} from 'react-native-iphone-x-helper';
 
-const DATA = {
-  id: 1,
-  name: 'Trà Sửa Oolong Nướng',
-  price: {price: 500000, discount: 0},
-  desc: {
-    id: 1,
-    type: PDescriptionType.TEXT,
-    content:
-      'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
-  },
-  image:
-    'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
-  amount: 1,
-};
-
-const OPTIONS = [
-  {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
-  {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
-  {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
-];
 interface Props extends NavigationComponentProps {
   id: any;
-  products?: any;
+  product: any;
+  products: any[];
   updateCart: (products: any[]) => void;
 }
 interface State {
   numberOfOrder: number;
-  option: any;
+  option?: any;
   enabledPlus: boolean;
   enabledSubtract: boolean;
   noteOfOrder?: string;
@@ -67,9 +49,9 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
 
     this.state = {
       numberOfOrder: 1,
-      option: OPTIONS[0],
       enabledPlus: true,
       enabledSubtract: false,
+      option: props.product?.options[0],
     };
   }
 
@@ -91,11 +73,13 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
   };
 
   _handleAddToCart = () => {
-    const {products} = this.props || {};
-    const {numberOfOrder} = this.state || {};
+    const {products, product} = this.props || {};
+    const {numberOfOrder, option, noteOfOrder} = this.state || {};
     const newProducts = CartManager.addToCart(products, {
-      ...DATA,
+      ...product,
       amount: numberOfOrder,
+      option: option,
+      note: noteOfOrder,
     });
     this.props.updateCart(newProducts);
     this._handleBack();
@@ -135,11 +119,10 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
   };
 
   render() {
-    const {id, products} = this.props || {};
-    const {image, name, desc, price} = DATA || {};
+    const {id, products, product} = this.props || {};
+    const {image, name, desc, price, options} = product || {};
     const {numberOfOrder, enabledSubtract, noteOfOrder, option} =
       this.state || {};
-    console.log(`products from redux`, products);
     return (
       <View style={styles.view}>
         <ScrollView style={styles.scrollView}>
@@ -191,8 +174,8 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
               />
             </View>
 
-            {OPTIONS.map((item, index) => {
-              const seleted = item.id === option.id;
+            {options?.map((item: any, index: number) => {
+              const seleted = item.id === option?.id;
               return (
                 <Fragment key={index}>
                   <LineView />
@@ -278,7 +261,7 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
           </View>
           <TitleSubButtonView
             title={`Chọn món - ${PriceUtils.format(
-              (price.price + option.price) * numberOfOrder,
+              (price.price + (option?.price || 0)) * numberOfOrder,
             )}`}
             onPress={this._handleAddToCart}
             viewStyle={{
@@ -379,6 +362,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   orderView: {
+    paddingBottom: isIphoneX() ? 10 : 0,
     backgroundColor: colors.white,
     shadowColor: colors.black,
     shadowOffset: {

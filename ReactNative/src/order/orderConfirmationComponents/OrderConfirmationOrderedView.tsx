@@ -1,16 +1,16 @@
 import {colors} from '@utils/Colors';
 import TitleSubButtonView from '@views/TitleSubButtonView';
 import LineView from '@views/LineView';
-import React from 'react';
+import React, {Fragment} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import OrderConfirmationOrderItemView from './OrderConfirmationOrderItemView';
 
 interface Props {
-  ordered?: any[];
+  products?: any[];
 }
 const OrderConfirmationOrderedView: React.FC<Props> = React.memo(
-  ({ordered}) => {
+  ({products}) => {
     const handleAddMore = () => {
       // Navigation.dismissModal(NavigationManager.getComponentId());
     };
@@ -25,12 +25,14 @@ const OrderConfirmationOrderedView: React.FC<Props> = React.memo(
             titleStyle={{color: colors.white, fontSize: 12, fontWeight: '400'}}
           />
         </View>
-        <LineView lineStyle={styles.line} />
-        <OrderConfirmationOrderItemView />
-        <LineView lineStyle={styles.line} />
-        <OrderConfirmationOrderItemView />
-        <LineView lineStyle={styles.line} />
-        <OrderConfirmationOrderItemView />
+        {products?.map((product, index) => {
+          return (
+            <Fragment key={index}>
+              <LineView lineStyle={styles.line} />
+              <OrderConfirmationOrderItemView product={product} />
+            </Fragment>
+          );
+        })}
       </View>
     );
   },
@@ -58,7 +60,6 @@ const styles = StyleSheet.create({
   line: {
     paddingHorizontal: 16,
     marginTop: 12,
-    backgroundColor: colors.background,
   },
 });
 

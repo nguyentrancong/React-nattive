@@ -5,27 +5,38 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import PriceUtils from '@utils/PriceUtils';
+import {sumBy} from 'lodash';
 
 interface Props {
-  ordered?: any[];
+  products: any[];
   onPressVoucher?: () => void;
 }
 const OrderConfirmationTotalView: React.FC<Props> = React.memo(
-  ({ordered, onPressVoucher}) => {
+  ({products, onPressVoucher}) => {
+    const total = sumBy(products, item => item.amount * item.price.price);
+    const shipper = 15000;
+    const save = 20000;
+    const totalSave = total + shipper - save;
     return (
       <View style={styles.view}>
         <Text style={styles.title}>Tổng cộng</Text>
         <LineView lineStyle={styles.line} />
         <TitleDescriptionButtonView
           title="Thành tiền"
-          description={PriceUtils.format(123232.0)}
+          description={PriceUtils.format(total)}
+          viewStyle={{paddingHorizontal: 0, paddingTop: 16}}
+          titleStyle={{fontSize: 14, fontWeight: '300'}}
+        />
+        <TitleDescriptionButtonView
+          title="Phí giao hàng"
+          description={PriceUtils.format(shipper)}
           viewStyle={{paddingHorizontal: 0, paddingTop: 16}}
           titleStyle={{fontSize: 14, fontWeight: '300'}}
         />
         <LineView lineStyle={styles.line} />
         <TitleDescriptionButtonView
           onPress={onPressVoucher}
-          title="Chọn khuyến mại"
+          title="Chọn khuyến mại 20k"
           image={require('@icons/ic_more_than.png')}
           viewStyle={{paddingHorizontal: 0, paddingTop: 16}}
           titleStyle={{fontSize: 14, fontWeight: '300', color: colors.primary}}
@@ -33,7 +44,7 @@ const OrderConfirmationTotalView: React.FC<Props> = React.memo(
         <LineView lineStyle={styles.line} />
         <TitleDescriptionButtonView
           title="Số tiền thanh toán"
-          description={PriceUtils.format(123232.0)}
+          description={PriceUtils.format(totalSave > 0 ? totalSave : 0)}
           viewStyle={{paddingHorizontal: 0, paddingTop: 16}}
           titleStyle={{fontSize: 14, fontWeight: '400'}}
         />
@@ -58,7 +69,6 @@ const styles = StyleSheet.create({
   line: {
     paddingHorizontal: 16,
     marginTop: 12,
-    backgroundColor: colors.background,
   },
 });
 

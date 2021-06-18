@@ -31,7 +31,7 @@ const TitleHeaderView: React.FC<Props> = React.memo(
           <Text style={[styles.title, titleStyle]}>{title}</Text>
           <CloseButtonView
             onPress={onPressClose}
-            viewStyle={buttonCloseStyle}
+            viewStyle={[styles.closeButton, buttonCloseStyle]}
           />
         </View>
         {!!isShowLine && <View style={[styles.line, lineStyle]} />}
@@ -54,7 +54,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.black,
   },
-  closeButton: {},
+  closeButton: {
+    marginHorizontal: 6,
+  },
   line: {
     height: 1,
     backgroundColor: colors.line,

@@ -23,7 +23,7 @@ import {
 } from '@utils/Constant';
 import PriceUtils from '@utils/PriceUtils';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
-import OrderCategoryView from './orderComponents/OrderCategoryView';
+import OrderCategoryView from './orderCategoryComponents/OrderCategoryView';
 import NavigationManager from '@managers/NavigationManager';
 import {connect} from 'react-redux';
 import {updateCart} from '@redux/actions/Cart';
@@ -42,62 +42,87 @@ const DATA: any[] = [
   {
     id: 1,
     type: ItemType.ROW,
-    name: 'Trà Sửa Oolong Nướng',
-    price: {price: 500000, discount: 0},
+    name: '1 Trà Sửa Oolong Nướng',
+    price: {price: 5900, discount: 0},
     desc: {
       id: 1,
       type: PDescriptionType.TEXT,
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    options: [
+      {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+      {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+      {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+    ],
   },
   {
     id: 2,
     type: ItemType.ROW,
-    name: 'Trà Sửa Oolong Nướng',
-    price: {price: 500000, discount: 0},
+    name: '2 Trà Sửa Oolong Nướng',
+    price: {price: 40000, discount: 0},
     desc: {
       id: 1,
       type: PDescriptionType.TEXT,
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    options: [
+      {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+      {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+      {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+    ],
   },
   {
     id: 3,
     type: ItemType.ROW,
-    name: 'Trà Sửa Oolong Nướng',
-    price: {price: 500000, discount: 0},
+    name: '3 Trà Sửa Oolong Nướng',
+    price: {price: 50300, discount: 0},
     desc: {
       id: 1,
       type: PDescriptionType.TEXT,
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    options: [
+      {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+      {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+      {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+    ],
   },
   {
     id: 4,
     type: ItemType.ROW,
-    name: 'Trà Sửa Oolong Nướng',
-    price: {price: 500000, discount: 0},
+    name: '4 Trà Sửa Oolong Nướng',
+    price: {price: 5000, discount: 0},
     desc: {
       id: 1,
       type: PDescriptionType.TEXT,
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    options: [
+      {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+      {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+      {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+    ],
   },
   {
     id: 5,
     type: ItemType.ROW,
-    name: 'Trà Sửa Oolong Nướng',
-    price: {price: 500000, discount: 0},
+    name: '5 Trà Sửa Oolong Nướng',
+    price: {price: 56000, discount: 0},
     desc: {
       id: 1,
       type: PDescriptionType.TEXT,
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    options: [
+      {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+      {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+      {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+    ],
   },
   {
     type: ItemType.HEADER,
@@ -223,9 +248,10 @@ class OrderScreen extends NavigationComponent<Props, State> {
     return true;
   };
 
-  _handleShowProductDetail = () => {
+  _handleShowProductDetail = (product: any) => {
     const params = {
-      id: '1212',
+      id: product.id,
+      product: product,
     };
     NavigationManager.showModal(PRODUCT_DETAIL_SCREEN, params);
   };
@@ -238,7 +264,7 @@ class OrderScreen extends NavigationComponent<Props, State> {
         return (
           <Pressable
             style={styles.item}
-            onPress={this._handleShowProductDetail}>
+            onPress={() => this._handleShowProductDetail(data)}>
             <View style={styles.infoItem}>
               <Text style={styles.titleItem}>{data?.name}</Text>
               <Text style={styles.descItem} numberOfLines={2}>
@@ -268,12 +294,12 @@ class OrderScreen extends NavigationComponent<Props, State> {
   };
 
   render() {
-    // const totalProduct = sumBy(cart, (product: any) => {
-    //   return product.amount;
-    // });
     const {products} = this.props || {};
     const numberOfProduct = sumBy(products, (product: any) => {
       return product.amount;
+    });
+    const totalPrice = sumBy(products, (product: any) => {
+      return product.amount * product.price.price;
     });
     return (
       <View style={styles.container}>
@@ -294,7 +320,7 @@ class OrderScreen extends NavigationComponent<Props, State> {
             <Text style={styles.btTitle}>
               {numberOfProduct} món trong giỏ hàng
             </Text>
-            <Text style={styles.btPrice}>{PriceUtils.format(1450000.0)}</Text>
+            <Text style={styles.btPrice}>{PriceUtils.format(totalPrice)}</Text>
           </View>
           <Image
             style={styles.btImage}

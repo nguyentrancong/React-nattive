@@ -54,7 +54,6 @@ const OrderConfirmationMethodView: React.FC<Props> = React.memo(
           lineStyle={{
             paddingHorizontal: 16,
             marginTop: 12,
-            backgroundColor: colors.background,
           }}
         />
         <Pressable onPress={handleSwitchStore} style={styles.switchStore}>
