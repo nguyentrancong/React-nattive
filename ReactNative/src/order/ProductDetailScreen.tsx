@@ -5,7 +5,7 @@ import {dimensions} from '@utils/Constant';
 import CloseButtonView from '@views/CloseButtonView';
 import TitleSubButtonView from '@views/TitleSubButtonView';
 import PriceUtils from '@utils/PriceUtils';
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   Text,
   StyleSheet,
@@ -23,6 +23,9 @@ import {
 } from 'react-native-navigation';
 import {connect} from 'react-redux';
 import CartManager from '@managers/CartManager';
+import Toast from 'react-native-easy-toast';
+import LineView from '@views/LineView';
+import RadioButtonView from '@views/RadioButtonView';
 
 const DATA = {
   id: 1,
@@ -38,18 +41,36 @@ const DATA = {
     'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   amount: 1,
 };
+
+const OPTIONS = [
+  {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
+  {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
+  {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
+];
 interface Props extends NavigationComponentProps {
   id: any;
   products?: any;
   updateCart: (products: any[]) => void;
 }
-interface State {}
+interface State {
+  numberOfOrder: number;
+  option: any;
+  enabledPlus: boolean;
+  enabledSubtract: boolean;
+  noteOfOrder?: string;
+}
 class ProductDetailScreen extends NavigationComponent<Props, State> {
   private navigationEventListener?: EventSubscription;
+  toastRef: Toast | null | undefined;
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      numberOfOrder: 1,
+      option: OPTIONS[0],
+      enabledPlus: true,
+      enabledSubtract: false,
+    };
   }
 
   componentDidMount() {
@@ -71,14 +92,53 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
 
   _handleAddToCart = () => {
     const {products} = this.props || {};
-    const newProducts = CartManager.addToCart(products, DATA);
+    const {numberOfOrder} = this.state || {};
+    const newProducts = CartManager.addToCart(products, {
+      ...DATA,
+      amount: numberOfOrder,
+    });
     this.props.updateCart(newProducts);
     this._handleBack();
+  };
+
+  _handlePlus = () => {
+    const {numberOfOrder} = this.state || {};
+    this.setState({numberOfOrder: numberOfOrder + 1});
+    this.setState({enabledSubtract: true});
+  };
+
+  _handleSubtract = () => {
+    const {numberOfOrder} = this.state || {};
+    if (numberOfOrder === 1) {
+      return;
+    } else {
+      let index = numberOfOrder - 1;
+      this.setState({numberOfOrder: index});
+      if (index === 1) {
+        this.setState({enabledSubtract: false});
+      }
+    }
+  };
+
+  _handleToast = (message: string) => {
+    this.toastRef?.show(<Text style={styles.toast}>{message}</Text>);
+  };
+
+  _handleNote = () => {
+    this.setState({
+      noteOfOrder: 'Cho mình nhiều sữa, ít đá nhé bạn ơi, Cho mình nhiều sữa',
+    });
+  };
+
+  _handleSeletedOpstion = (option: any) => {
+    this.setState({option: option});
   };
 
   render() {
     const {id, products} = this.props || {};
     const {image, name, desc, price} = DATA || {};
+    const {numberOfOrder, enabledSubtract, noteOfOrder, option} =
+      this.state || {};
     console.log(`products from redux`, products);
     return (
       <View style={styles.view}>
@@ -105,32 +165,138 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
             <Text style={styles.descriptionInfo}>{desc?.content}</Text>
           </View>
           {/* option view */}
+          <View style={styles.optionView}>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <TitleSubButtonView
+                title="Lựa chọn"
+                subtitle="Lựa chọn sản phẩn bạn mong muốn"
+                viewStyle={{
+                  flex: 1,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  backgroundColor: colors.white,
+                  marginBottom: 12,
+                }}
+                subtitleStyle={{marginTop: 4, color: colors.gray}}
+              />
+              <TitleSubButtonView
+                title="BẮT BUỘC"
+                viewStyle={{height: 25, backgroundColor: colors.primary}}
+                titleStyle={{
+                  fontSize: 12,
+                  paddingHorizontal: 8,
+                  color: colors.white,
+                  fontWeight: '400',
+                }}
+              />
+            </View>
+
+            {OPTIONS.map((item, index) => {
+              const seleted = item.id === option.id;
+              return (
+                <Fragment key={index}>
+                  <LineView />
+                  <RadioButtonView
+                    onPress={() => this._handleSeletedOpstion(item)}
+                    title={item.name}
+                    description={`+${PriceUtils.format(item.price)}`}
+                    viewStyle={{paddingHorizontal: 0, padding: 8}}
+                    colorRadio={colors.primary}
+                    selected={seleted || false}
+                  />
+                </Fragment>
+              );
+            })}
+          </View>
           {/* note view */}
           <View style={styles.noteView}>
-            <Text style={styles.titleOther}>Yêu cầu khác</Text>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <TitleSubButtonView
+                title="Yêu cầu khác"
+                subtitle="Những tuỳ chọn khác"
+                viewStyle={{
+                  flex: 1,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  backgroundColor: colors.white,
+                  marginBottom: 12,
+                }}
+                subtitleStyle={{marginTop: 4, color: colors.gray}}
+              />
+              <TitleSubButtonView
+                title="TUỲ CHỌN"
+                viewStyle={{height: 25, backgroundColor: colors.background}}
+                titleStyle={{
+                  fontSize: 12,
+                  paddingHorizontal: 8,
+                  fontWeight: '400',
+                }}
+              />
+            </View>
+            <LineView />
+            <Pressable onPress={this._handleNote} style={styles.btAddNote}>
+              {!!noteOfOrder ? (
+                <Text style={{color: colors.black, flex: 1}}>
+                  {noteOfOrder}
+                </Text>
+              ) : (
+                <Text style={{flex: 1, color: colors.black, opacity: 0.5}}>
+                  Thêm ghi chú món ...
+                </Text>
+              )}
+            </Pressable>
           </View>
+          <View style={{height: 16}} />
         </ScrollView>
         <CloseButtonView
           viewStyle={styles.closeButton}
           onPress={this._handleBack}
         />
         <View style={styles.orderView}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}></View>
+          <View style={styles.editOrderView}>
+            <CloseButtonView
+              viewStyle={{borderColor: colors.primary, borderWidth: 2}}
+              image={require('@icons/ic_plus.png')}
+              imageStyle={{tintColor: colors.primary}}
+              onPress={this._handlePlus}
+            />
+            <Text style={styles.numberOfOrder}>{numberOfOrder}</Text>
+            <CloseButtonView
+              viewStyle={
+                enabledSubtract
+                  ? {borderColor: colors.primary, borderWidth: 2}
+                  : {borderColor: colors.background, borderWidth: 2}
+              }
+              image={require('@icons/ic_subtract.png')}
+              imageStyle={
+                enabledSubtract
+                  ? {tintColor: colors.primary}
+                  : {tintColor: colors.background}
+              }
+              onPress={this._handleSubtract}
+            />
+          </View>
           <TitleSubButtonView
-            title="Chọn món"
+            title={`Chọn món - ${PriceUtils.format(
+              (price.price + option.price) * numberOfOrder,
+            )}`}
             onPress={this._handleAddToCart}
             viewStyle={{
               margin: 16,
               height: 44,
+              marginTop: 0,
             }}
             titleStyle={{color: colors.white}}
           />
         </View>
+        <Toast
+          ref={toast => (this.toastRef = toast)}
+          position="center"
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.8}
+        />
       </View>
     );
   }
@@ -190,11 +356,21 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 12,
   },
+  optionView: {
+    flex: 1,
+    marginTop: 8,
+    padding: 16,
+    paddingBottom: 0,
+    backgroundColor: colors.white,
+  },
   noteView: {
     flex: 1,
     marginTop: 8,
     padding: 16,
     backgroundColor: colors.white,
+  },
+  btAddNote: {
+    paddingTop: 12,
   },
   titleOther: {
     flex: 1,
@@ -211,6 +387,22 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 6,
     shadowOpacity: 0.2,
+  },
+  editOrderView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 12,
+  },
+  numberOfOrder: {
+    paddingHorizontal: 16,
+    fontSize: 20,
+    minWidth: 60,
+    textAlign: 'center',
+  },
+  toast: {
+    color: colors.white,
+    paddingHorizontal: 16,
   },
 });
 
