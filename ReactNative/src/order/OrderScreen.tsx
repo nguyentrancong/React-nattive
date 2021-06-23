@@ -50,6 +50,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
     options: [
       {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
       {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
@@ -67,6 +69,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
     options: [
       {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
       {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
@@ -89,6 +93,8 @@ const DATA: any[] = [
       {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
       {id: 2, name: 'Lớn', description: 'xxxx', price: 15000},
     ],
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
   {
     id: 4,
@@ -101,6 +107,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
     options: [
       {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
       {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
@@ -118,6 +126,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
     options: [
       {id: 0, name: 'Nhỏ', description: 'xxxx', price: 0},
       {id: 1, name: 'Vừa', description: 'xxxx', price: 9000},
@@ -139,6 +149,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
   {
     id: 2,
@@ -151,6 +163,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
   {
     id: 3,
@@ -163,6 +177,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
   {
     id: 4,
@@ -175,6 +191,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
   {
     id: 5,
@@ -187,6 +205,8 @@ const DATA: any[] = [
       content:
         'Đậm đà chuẩn gu - bởi trà oolong nướng đậm vị hoà cùng lớp sữa thơm béo. Hương vị chân ái đúng gu đậm đà - trà oolong được "sao" (nướng) lâu hơn cho vị đậm đà, hoà quyện với sữa thơm ngậy. Cho từng ngụm mát lạnh, lưu luyến vị trà sữa đậm đà mãi nơi cuống họng.',
     },
+    image:
+      'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
   },
 ];
 
@@ -277,7 +297,7 @@ class OrderScreen extends NavigationComponent<Props, State> {
             <Image
               style={styles.imageItem}
               source={{
-                uri: 'https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg',
+                uri: data?.image,
               }}
             />
           </Pressable>

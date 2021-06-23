@@ -5,15 +5,15 @@ import React, {Fragment} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import OrderConfirmationOrderItemView from './OrderConfirmationOrderItemView';
+import {Navigation} from 'react-native-navigation';
+import NavigationManager from '@managers/NavigationManager';
 
 interface Props {
   products?: any[];
+  handleAddMore?: () => void;
 }
 const OrderConfirmationOrderedView: React.FC<Props> = React.memo(
-  ({products}) => {
-    const handleAddMore = () => {
-      // Navigation.dismissModal(NavigationManager.getComponentId());
-    };
+  ({products, handleAddMore}) => {
     return (
       <View style={styles.view}>
         <View style={styles.header}>

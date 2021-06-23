@@ -18,6 +18,8 @@ export const SOTRE_LIST_SCREEN = 'StoreList';
 export const ORDER_SCREEN = 'Order';
 export const ORDER_CONFIRMATION_SCREEN = 'OrderConfirmation';
 export const ORDER_CATEGORY_SCREEN = 'OrderCategory';
+export const EDIT_PRODUCT_ORDER_CONFIRMATION_SCREEN =
+  'EditProductOrderConfirmation';
 
 //Product
 export const PRODUCT_DETAIL_SCREEN = 'ProductDetail';

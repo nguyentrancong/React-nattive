@@ -1,19 +1,13 @@
-import {PDescriptionType} from '@models/Product';
 import {updateCart} from '@redux/actions/Cart';
-import {colors} from '@utils/Colors';
-import {dimensions} from '@utils/Constant';
-import CloseButtonView from '@views/CloseButtonView';
-import TitleSubButtonView from '@views/TitleSubButtonView';
-import PriceUtils from '@utils/PriceUtils';
 import React, {Fragment} from 'react';
 import {
   Text,
   StyleSheet,
   View,
   BackHandler,
-  Pressable,
   ScrollView,
   Image,
+  Pressable,
 } from 'react-native';
 import {
   EventSubscription,
@@ -22,14 +16,18 @@ import {
   NavigationComponentProps,
 } from 'react-native-navigation';
 import {connect} from 'react-redux';
+import CloseButtonView from '@views/CloseButtonView';
+import TitleSubButtonView from '@views/TitleSubButtonView';
+import PriceUtils from '@utils/PriceUtils';
 import CartManager from '@managers/CartManager';
 import Toast from 'react-native-easy-toast';
 import LineView from '@views/LineView';
 import RadioButtonView from '@views/RadioButtonView';
 import {isIphoneX} from 'react-native-iphone-x-helper';
-
+import {colors} from '@utils/Colors';
+import {dimensions} from '@utils/Constant';
 interface Props extends NavigationComponentProps {
-  id?: any;
+  id?: string;
   product?: any;
   products: any[];
   updateCart: (products: any[]) => void;
@@ -41,17 +39,21 @@ interface State {
   enabledSubtract: boolean;
   noteOfOrder?: string;
 }
-class ProductDetailScreen extends NavigationComponent<Props, State> {
+class EditProductOrderConfirmationScreen extends NavigationComponent<
+  Props,
+  State
+> {
   private navigationEventListener?: EventSubscription;
-  toastRef: Toast | null | undefined;
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      numberOfOrder: 1,
+      numberOfOrder: props.product?.amount || 1,
+      option: props.product?.option,
       enabledPlus: true,
-      enabledSubtract: false,
-      option: (props.product?.options || [])[0],
+      enabledSubtract: true,
+      noteOfOrder: props.product?.note,
     };
   }
 
@@ -72,17 +74,10 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
     return true;
   };
 
-  _handleAddToCart = () => {
-    const {products, product} = this.props || {};
-    const {numberOfOrder, option, noteOfOrder} = this.state || {};
-    const newProducts = CartManager.addToCart(products, {
-      ...product,
-      amount: numberOfOrder,
-      option: option,
-      note: noteOfOrder,
+  _handleNote = () => {
+    this.setState({
+      noteOfOrder: 'Cho mình nhiều sữa, ít đá nhé bạn ơi, Cho mình nhiều sữa',
     });
-    this.props.updateCart(newProducts);
-    this._handleBack();
   };
 
   _handlePlus = () => {
@@ -104,14 +99,18 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
     }
   };
 
-  _handleToast = (message: string) => {
-    this.toastRef?.show(<Text style={styles.toast}>{message}</Text>);
-  };
-
-  _handleNote = () => {
-    this.setState({
-      noteOfOrder: 'Cho mình nhiều sữa, ít đá nhé bạn ơi, Cho mình nhiều sữa',
-    });
+  _handleAddToCart = () => {
+    const {products, product} = this.props || {};
+    const {numberOfOrder, noteOfOrder, option} = this.state || {};
+    const newProducts = CartManager.editItemInCart(
+      products,
+      {...product},
+      numberOfOrder,
+      noteOfOrder,
+      option,
+    );
+    this.props.updateCart(newProducts);
+    this._handleBack();
   };
 
   _handleSeletedOpstion = (option: any) => {
@@ -119,10 +118,12 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
   };
 
   render() {
-    const {id, products, product} = this.props || {};
+    const {products, product} = this.props || {};
     const {image, name, desc, price, options} = product || {};
-    const {numberOfOrder, enabledSubtract, noteOfOrder, option} =
+    const {noteOfOrder, numberOfOrder, enabledSubtract, option} =
       this.state || {};
+    // console.log('====>>> product | edit product | ', product);
+    // return null;
     return (
       <View style={styles.view}>
         <ScrollView style={styles.scrollView}>
@@ -191,6 +192,7 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
               );
             })}
           </View>
+
           {/* note view */}
           <View style={styles.noteView}>
             <View style={{flex: 1, flexDirection: 'row'}}>
@@ -231,10 +233,14 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
           </View>
           <View style={{height: 16}} />
         </ScrollView>
+
+        {/* Button close */}
         <CloseButtonView
           viewStyle={styles.closeButton}
           onPress={this._handleBack}
         />
+
+        {/* Order */}
         <View style={styles.orderView}>
           <View style={styles.editOrderView}>
             <CloseButtonView
@@ -272,14 +278,6 @@ class ProductDetailScreen extends NavigationComponent<Props, State> {
             titleStyle={{color: colors.white}}
           />
         </View>
-        <Toast
-          ref={toast => (this.toastRef = toast)}
-          position="center"
-          positionValue={200}
-          fadeInDuration={750}
-          fadeOutDuration={1000}
-          opacity={0.8}
-        />
       </View>
     );
   }
@@ -404,4 +402,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ProductDetailScreen);
+)(EditProductOrderConfirmationScreen);

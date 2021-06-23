@@ -15,7 +15,6 @@ import OrderConfirmationTotalView from './orderConfirmationComponents/OrderConfi
 import {isIphoneX} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
 import {updateCart} from '@redux/actions/Cart';
-import CartManager from '@managers/CartManager';
 import {sumBy} from 'lodash';
 
 const Methods = [
@@ -49,7 +48,10 @@ class OrderConfirmationScreen extends NavigationComponent<Props, State> {
   };
 
   _handleChekcOut = () => {
-    //todo: handle check out
+    Navigation.dismissModal(this.props.componentId);
+  };
+
+  _handleAddMore = () => {
     Navigation.dismissModal(this.props.componentId);
   };
 
@@ -67,7 +69,10 @@ class OrderConfirmationScreen extends NavigationComponent<Props, State> {
         />
         <ScrollView style={styles.scrollView}>
           <OrderConfirmationMethodView method={method} />
-          <OrderConfirmationOrderedView products={products} />
+          <OrderConfirmationOrderedView
+            products={products}
+            handleAddMore={this._handleAddMore}
+          />
           <OrderConfirmationTotalView products={products} />
           <OrderConfirmationPayView />
           <Pressable

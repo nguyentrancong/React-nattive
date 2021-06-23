@@ -9,6 +9,7 @@ import {
   SOTRE_LIST_SCREEN,
   STORE_SCREEN,
   PRODUCT_DETAIL_SCREEN,
+  EDIT_PRODUCT_ORDER_CONFIRMATION_SCREEN,
 } from '@utils/Constant';
 import React from 'react';
 import {Navigation} from 'react-native-navigation';
@@ -28,6 +29,7 @@ import AddressManager from '@managers/AddressManager';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationProvider} from 'react-native-navigation-hooks';
+import EditProductOrderConfirmationScreen from './src/order/EditProductOrderConfirmationScreen';
 
 const {store, persistor} = configureStore({}, () => updateStore());
 
@@ -95,6 +97,11 @@ Navigation.registerComponent(
   ORDER_CONFIRMATION_SCREEN,
   () => WrappedComponent(OrderConfirmationScreen),
   () => OrderConfirmationScreen,
+);
+Navigation.registerComponent(
+  EDIT_PRODUCT_ORDER_CONFIRMATION_SCREEN,
+  () => WrappedComponent(EditProductOrderConfirmationScreen),
+  () => EditProductOrderConfirmationScreen,
 );
 
 //Product

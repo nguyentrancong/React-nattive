@@ -1,5 +1,6 @@
-import {Order} from '@models/Order';
+import NavigationManager from '@managers/NavigationManager';
 import {colors} from '@utils/Colors';
+import {EDIT_PRODUCT_ORDER_CONFIRMATION_SCREEN} from '@utils/Constant';
 import PriceUtils from '@utils/PriceUtils';
 import TitleDescriptionButtonView from '@views/TitleDescriptionButtonView';
 import React from 'react';
@@ -11,14 +12,28 @@ interface Props {
 const OrderConfirmationOrderItemView: React.FC<Props> = React.memo(
   ({product}) => {
     const {amount, name, price, option, note} = product || {};
+    const handleEditItem = () => {};
+    const handleDisplayingItem = () => {
+      const params = {
+        product: product,
+      };
+      NavigationManager.showModal(
+        EDIT_PRODUCT_ORDER_CONFIRMATION_SCREEN,
+        params,
+      );
+    };
     return (
-      <Pressable style={styles.view}>
-        <Image
-          style={styles.imageEdit}
-          source={require('@icons/ic_edit.png')}
-        />
-        <View style={{flex: 1}}>
+      <View style={styles.view}>
+        <Pressable style={styles.btEdit} onPress={handleEditItem}>
+          <Image
+            style={styles.imageEdit}
+            source={require('@icons/ic_edit.png')}
+          />
+        </Pressable>
+
+        <Pressable style={{flex: 1}} onPress={handleDisplayingItem}>
           <TitleDescriptionButtonView
+            onPress={handleDisplayingItem}
             title={`${amount} x ${name}`}
             description={PriceUtils.format(amount * price.price)}
             viewStyle={{paddingHorizontal: 0, paddingTop: 0}}
@@ -28,8 +43,8 @@ const OrderConfirmationOrderItemView: React.FC<Props> = React.memo(
             {option ? `${option?.name} ` : null}
             {note ? `/ ${note}` : null}
           </Text>
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
     );
   },
 );
@@ -40,8 +55,13 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     flexDirection: 'row',
   },
+  btEdit: {
+    padding: 20,
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 16,
+  },
   imageEdit: {
-    marginRight: 8,
     height: 20,
     width: 20,
     tintColor: colors.primary,
